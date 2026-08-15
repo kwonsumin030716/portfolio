@@ -95,7 +95,7 @@ export default function ProjectOnePage() {
                     {activeTab?.accNum ? (
                         <div className="w-full bg-white p-4 mt-6">
                             <Image
-                                src={`http://localhost:8080/api/images/${activeTab.accNum}.png`}
+                                src={`/api/proxy/images/${activeTab.accNum}.png`}
                                 alt={activeTab?.nickName || "계좌 이미지"}
 
                                 width={0}

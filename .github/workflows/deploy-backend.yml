@@ -2,20 +2,18 @@ name: Deploy Spring Boot to GCP
 
 on:
   push:
-    branches: [ "master" ] # 내 브랜치명이 master이므로 master에 push될 때만 작동
+    branches: [ "master" ]
     paths:
-      - 'asset/**' # ⚠️ 오직 asset(백엔드) 폴더 내부 파일이 수정되었을 때만 작동!
+      - 'asset/**'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. GitHub 가상 컴퓨터로 소스 코드 다운로드
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Java 25 환경 세팅 (LTS 버전에 맞게 수정)
       - name: Set up JDK 25
         uses: actions/setup-java@v4
         with:
@@ -24,14 +22,13 @@ jobs:
           cache: 'maven'
 
 
-          # 3. 마벤 프로젝트 빌드 (0KB 이슈 방지를 위해 패키징 진행)
       - name: Build with Maven
         run: |
           cd asset
           chmod +x mvnw
           ./mvnw clean package -DskipTests
 
-      # 4. 빌드된 .jar 파일을 GCP 서버로 전송 (SCP)
+
       - name: Deliver Boot Jar to GCP
         uses: appleboy/scp-action@master
         with:
@@ -40,9 +37,8 @@ jobs:
           key: ${{ secrets.GCP_SSH_KEY }}
           source: "asset/target/asset-0.0.1-SNAPSHOT.jar"
           target: "~/"
-          strip_components: 2 # asset/target 경로를 떼고 파일만 전송
+          strip_components: 2 
 
-      # 5. GCP 서버에 원격 접속(SSH)하여 기존 서버 종료 후 새 서버 실행
       - name: Execute Server Reload via SSH
         uses: appleboy/ssh-action@master
         with:
@@ -50,7 +46,6 @@ jobs:
           username: ${{ secrets.GCP_USERNAME }}
           key: ${{ secrets.GCP_SSH_KEY }}
           script: |
-            # 8080 포트를 사용 중인 기존 스프링부트 프로세스가 있다면 종료
             CURRENT_PID=$(lsof -t -i:8080)
             if [ -z "$CURRENT_PID" ]; then
               echo "No running application found on port 8080."
@@ -60,7 +55,6 @@ jobs:
               sleep 5
             fi
             
-            # 새 jar 파일 배포 위치 조정 및 메모리 제한하여 백그라운드 구동
             mv ~/target/asset-0.0.1-SNAPSHOT.jar ~/asset-0.0.1-SNAPSHOT.jar || true
             rm -rf ~/target
             nohup java -Xmx350m -jar ~/asset-0.0.1-SNAPSHOT.jar > ~/nohup.out 2>&1 &

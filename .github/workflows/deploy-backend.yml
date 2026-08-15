@@ -58,5 +58,7 @@ jobs:
             
             mv ~/target/asset-0.0.1-SNAPSHOT.jar ~/asset-0.0.1-SNAPSHOT.jar || true
             rm -rf ~/target
+            echo "${{ secrets.ENV_FILE_CONTENT }}" > ~/.env
             nohup java -Xmx350m -jar ~/asset-0.0.1-SNAPSHOT.jar > ~/nohup.out 2>&1 &
+          
             echo "Spring Boot Application deployed successfully!"

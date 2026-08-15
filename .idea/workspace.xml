@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="Github actions 활용">
-      <change beforePath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/controller/AssetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/controller/AssetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

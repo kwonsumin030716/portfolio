@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="portfolio 폴더 초기 업로드">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/AssetApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/Api.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/BaseKR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/CTRGA011R.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/CTSC9215R.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/Discord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/FHKST03010100.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/KRInvestAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/TTTC8434R.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/UpbitAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Chart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/CircleChart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/CircleData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Title.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/XYChart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/XYData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Xaxis.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Yaxis.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/controller/AssetController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/controller/TabController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/AllocSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/AssetMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Save.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Stock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/StockMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/TQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Transaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/tool/AssetManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/tool/FileManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/tool/Pretendard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-ExtraBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-ExtraLight.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Thin.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/43107765-01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/43107765-22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/43167761-01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/UPBIT.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/total.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/test/java/in/kwonsum/asset/AssetApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/portfolio.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/AGENTS.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/CLAUDE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/eslint.config.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/next.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/postcss.config.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/public/file.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/public/globe.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/public/next.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/public/vercel.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/public/window.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/app/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/app/globals.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/app/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/app/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/app/projects/1/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/components/Navbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/data/projects.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kwonsumin030716&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kwonsumin030716/portfolio.git&quot;,
+    &quot;accountId&quot;: &quot;75a1d327-3211-4c4c-b89e-74e1def5a93d&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000000000000004" />
+      <entry key="MS500" value="1.0013826258254517" />
+      <entry key="S2" value="1.3939840698619503" />
+      <entry key="S5" value="2.3123416843595272" />
+      <entry key="S10" value="2.978836810634667" />
+      <entry key="S30" value="3.6098433293411927" />
+      <entry key="S60" value="3.798412643688038" />
+      <entry key="M2" value="4.045042037902437" />
+      <entry key="M5" value="12.513681918262273" />
+      <entry key="M10" value="58.989073256962286" />
+      <entry key="M15" value="114.54209249185253" />
+      <entry key="M30" value="236.2357747673566" />
+      <entry key="H1" value="361.5973186080551" />
+      <entry key="H2" value="481.4312379938603" />
+      <entry key="H4" value="610.7109286349677" />
+      <entry key="D1" value="1005.6452810624966" />
+      <entry key="W1" value="1173.1864636091102" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="2.7596752902600656E-153" />
+      <entry key="S5" value="9.474666329091781E-62" />
+      <entry key="S10" value="3.1466976283421564E-31" />
+      <entry key="S30" value="8.658662651806678E-11" />
+      <entry key="S60" value="1.2584710999547923E-5" />
+      <entry key="M2" value="0.004984048322814225" />
+      <entry key="M5" value="0.19592564612252295" />
+      <entry key="M10" value="0.7238934759808616" />
+      <entry key="M15" value="1.1484699629465278" />
+      <entry key="M30" value="2.1459203825085056" />
+      <entry key="H1" value="5.126622683153933" />
+      <entry key="H2" value="11.504897252989887" />
+      <entry key="H4" value="21.433227036909468" />
+      <entry key="D1" value="54.438621166370126" />
+      <entry key="W1" value="68.23211133455762" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9201876506248755" />
+      <entry key="MS500" value="0.9844769258912707" />
+      <entry key="S2" value="1.3470108565798142" />
+      <entry key="S5" value="2.252733664737009" />
+      <entry key="S10" value="2.9344744975229804" />
+      <entry key="S30" value="3.5905266638168496" />
+      <entry key="S60" value="3.7880957727039632" />
+      <entry key="M2" value="4.044495979758204" />
+      <entry key="M5" value="12.704774387559585" />
+      <entry key="M10" value="59.70639219121179" />
+      <entry key="M15" value="115.68358704372106" />
+      <entry key="M30" value="238.3742729671344" />
+      <entry key="H1" value="366.7131555280427" />
+      <entry key="H2" value="492.92292446296256" />
+      <entry key="H4" value="632.1307982348377" />
+      <entry key="D1" value="1060.0773719123824" />
+      <entry key="W1" value="1241.4173726375625" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3Htew1E9Jz7vM1q2Zo9WI6dVdtV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AssetApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/portfolio&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.Next.js: 서버 측.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\portfolio\src\app\projects\1" />
+      <recent name="C:\portfolio\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.Next.js: 서버 측">
+    <configuration name="Next.js: 클라이언트 측에서 디버그" type="JavascriptDebugType" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="asset" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="asset" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="AssetApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="asset" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="in.kwonsum.asset.AssetApplication" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/asset" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Next.js: 서버 측" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript 디버그.Next.js: 클라이언트 측에서 디버그" />
+      <item itemvalue="npm.Next.js: 서버 측" />
+      <item itemvalue="Spring Boot.AssetApplication" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-34e2839f716b-intellij.indexing.shared.core-IU-262.9437.185" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.9437.185" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="논리" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="" />
+      <created>1786692026981</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1786692026981</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="next.config.ts" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/web" />
+    </ignored-roots>
+    <MESSAGE value="portfolio 폴더 초기 업로드" />
+    <option name="LAST_COMMIT_MESSAGE" value="portfolio 폴더 초기 업로드" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

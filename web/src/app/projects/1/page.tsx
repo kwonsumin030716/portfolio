@@ -19,7 +19,7 @@ export default function ProjectOnePage() {
 
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/tabs")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tabs`)
             .then((res) => {
                 if (!res.ok) throw new Error("백엔드 탭 리스트 로딩 실패");
                 return res.json();
@@ -59,8 +59,7 @@ export default function ProjectOnePage() {
                         <h1 className="text-3xl font-extrabold text-slate-900">{ data?.title }</h1>
                         <button
                             onClick={() => {
-                                // 🔄 클릭 시 스프링 부트의 /api/run API를 호출합니다.
-                                fetch("http://localhost:8080/api/run")
+                                fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/run`)
                                     .then((res) => {
                                         if (!res.ok) throw new Error("백엔드 함수 실행 실패");
                                         return res.text();
@@ -85,7 +84,7 @@ export default function ProjectOnePage() {
                                 onClick={() => setActiveTab(account)}
                                 className={`px-4 py-2 font-medium text-base transition-all -mb-px ${
                                     activeTab?.accNum === account.accNum
-                                        ? "border-b-2 border-[#1F41B0] text-[#1F41B0] font-semibold" // 💡 활성화 탭 색상 변경 완료!
+                                        ? "border-b-2 border-[#1F41B0] text-[#1F41B0] font-semibold" 
                                         : "border-b-2 border-transparent text-slate-500 hover:text-slate-800"
                                 }`}
                             >
@@ -99,12 +98,10 @@ export default function ProjectOnePage() {
                                 src={`http://localhost:8080/api/images/${activeTab.accNum}.png`}
                                 alt={activeTab?.nickName || "계좌 이미지"}
 
-                                // 💡 Next.js Image 규칙을 지키면서 가로 폭에 맞춰 세로를 무한히 늘리는 마법의 삼총사 속성입니다.
                                 width={0}
                                 height={0}
                                 sizes="100vw"
 
-                                // 💡 Tailwind로 가로 100%, 세로는 자동 비율로 쫙 늘려줍니다. (오타 수정 완료)
                                 className="w-full h-auto object-contain"
                                 unoptimized
                             />

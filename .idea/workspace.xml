@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="portfolio 폴더 초기 업로드">
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/config/WebConfig.java" afterDir="false" />
+    <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="백엔드 CORS 설정 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/projects/1/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/projects/1/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,61 +44,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000000000004" />
-      <entry key="MS500" value="1.0013826258254517" />
-      <entry key="S2" value="1.3939840698619503" />
-      <entry key="S5" value="2.3123416843595272" />
-      <entry key="S10" value="2.978836810634667" />
-      <entry key="S30" value="3.6098433293411927" />
-      <entry key="S60" value="3.798412643688038" />
-      <entry key="M2" value="4.045042037902437" />
-      <entry key="M5" value="12.513681918262273" />
-      <entry key="M10" value="58.989073256962286" />
-      <entry key="M15" value="114.54209249185253" />
-      <entry key="M30" value="236.2357747673566" />
-      <entry key="H1" value="361.5973186080551" />
-      <entry key="H2" value="481.4312379938603" />
-      <entry key="H4" value="610.7109286349677" />
-      <entry key="D1" value="1005.6452810624966" />
-      <entry key="W1" value="1173.1864636091102" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0000000683795878" />
+      <entry key="S10" value="1.0003442097089004" />
+      <entry key="S30" value="1.1888728332787544" />
+      <entry key="S60" value="2.1092125260269663" />
+      <entry key="M2" value="3.9062585520927025" />
+      <entry key="M5" value="6.780085603401544" />
+      <entry key="M10" value="12.168590854386313" />
+      <entry key="M15" value="27.29675396871358" />
+      <entry key="M30" value="103.93776684344648" />
+      <entry key="H1" value="238.4750392238973" />
+      <entry key="H2" value="393.0102681488972" />
+      <entry key="H4" value="555.0614305526985" />
+      <entry key="D1" value="997.4787329037738" />
+      <entry key="W1" value="1180.9663810510056" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="2.7596752902600656E-153" />
-      <entry key="S5" value="9.474666329091781E-62" />
-      <entry key="S10" value="3.1466976283421564E-31" />
-      <entry key="S30" value="8.658662651806678E-11" />
-      <entry key="S60" value="1.2584710999547923E-5" />
-      <entry key="M2" value="0.004984048322814225" />
-      <entry key="M5" value="0.19592564612252295" />
-      <entry key="M10" value="0.7238934759808616" />
-      <entry key="M15" value="1.1484699629465278" />
-      <entry key="M30" value="2.1459203825085056" />
-      <entry key="H1" value="5.126622683153933" />
-      <entry key="H2" value="11.504897252989887" />
-      <entry key="H4" value="21.433227036909468" />
-      <entry key="D1" value="54.438621166370126" />
-      <entry key="W1" value="68.23211133455762" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="5.354384712484529E-206" />
+      <entry key="S10" value="2.3655266037241955E-103" />
+      <entry key="S30" value="7.873027362319069E-35" />
+      <entry key="S60" value="1.2000206440869191E-17" />
+      <entry key="M2" value="4.866928652627143E-9" />
+      <entry key="M5" value="7.726101010569167E-4" />
+      <entry key="M10" value="0.045457883330788214" />
+      <entry key="M15" value="0.1814440254972077" />
+      <entry key="M30" value="0.8529530382556486" />
+      <entry key="H1" value="3.2321172910835276" />
+      <entry key="H2" value="9.135043576338084" />
+      <entry key="H4" value="19.098598717812063" />
+      <entry key="D1" value="53.40223579012793" />
+      <entry key="W1" value="68.04501040022315" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9201876506248755" />
-      <entry key="MS500" value="0.9844769258912707" />
-      <entry key="S2" value="1.3470108565798142" />
-      <entry key="S5" value="2.252733664737009" />
-      <entry key="S10" value="2.9344744975229804" />
-      <entry key="S30" value="3.5905266638168496" />
-      <entry key="S60" value="3.7880957727039632" />
-      <entry key="M2" value="4.044495979758204" />
-      <entry key="M5" value="12.704774387559585" />
-      <entry key="M10" value="59.70639219121179" />
-      <entry key="M15" value="115.68358704372106" />
-      <entry key="M30" value="238.3742729671344" />
-      <entry key="H1" value="366.7131555280427" />
-      <entry key="H2" value="492.92292446296256" />
-      <entry key="H4" value="632.1307982348377" />
-      <entry key="D1" value="1060.0773719123824" />
-      <entry key="W1" value="1241.4173726375625" />
+      <entry key="MS100" value="0.7955364837549187" />
+      <entry key="MS500" value="0.9552829363824373" />
+      <entry key="S2" value="0.9886282245671552" />
+      <entry key="S5" value="0.9954357452497666" />
+      <entry key="S10" value="0.9980592787213157" />
+      <entry key="S30" value="1.1880824972634114" />
+      <entry key="S60" value="2.108747128129016" />
+      <entry key="M2" value="3.905952575062648" />
+      <entry key="M5" value="6.780664590115917" />
+      <entry key="M10" value="12.213531108274209" />
+      <entry key="M15" value="27.477020999917382" />
+      <entry key="M30" value="104.78772928949493" />
+      <entry key="H1" value="241.70033549667755" />
+      <entry key="H2" value="402.13481143808644" />
+      <entry key="H4" value="574.148121371265" />
+      <entry key="D1" value="1050.8745617865766" />
+      <entry key="W1" value="1249.0101923113764" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -240,7 +240,8 @@
       <path value="$PROJECT_DIR$/web" />
     </ignored-roots>
     <MESSAGE value="portfolio 폴더 초기 업로드" />
-    <option name="LAST_COMMIT_MESSAGE" value="portfolio 폴더 초기 업로드" />
+    <MESSAGE value="백엔드 CORS 설정 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="백엔드 CORS 설정 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

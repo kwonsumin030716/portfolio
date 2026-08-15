@@ -47,7 +47,7 @@ public class FileManager {
         return env.get(cls);
     }
 
-    public static Map<String, String> readEnv(String path){
+    private static Map<String, String> readEnv(String path){
         File file = new File(path);
         Map<String, String> res = new HashMap<>();
         try{

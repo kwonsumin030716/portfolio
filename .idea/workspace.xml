@@ -5,95 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="portfolio 폴더 초기 업로드">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/AssetApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/Api.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/BaseKR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/CTRGA011R.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/CTSC9215R.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/Discord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/FHKST03010100.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/KRInvestAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/TTTC8434R.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/api/UpbitAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Chart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/CircleChart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/CircleData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Title.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/XYChart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/XYData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Xaxis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/chart/Yaxis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/controller/AssetController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/controller/TabController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/AllocSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/AssetMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Save.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Stock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/StockMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/TQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Token.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/dto/Transaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/tool/AssetManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/tool/FileManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/tool/Pretendard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/fonts/PretendardGOV-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/43107765-01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/43107765-22.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/43167761-01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/UPBIT.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/main/resources/static/img/total.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/asset/src/test/java/in/kwonsum/asset/AssetApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/portfolio.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/AGENTS.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/CLAUDE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/eslint.config.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/next.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/postcss.config.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/public/file.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/public/globe.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/public/next.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/public/vercel.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/public/window.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/app/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/app/globals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/app/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/app/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/app/projects/1/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/components/Navbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/data/projects.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/src/main/java/in/kwonsum/asset/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,6 +150,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\portfolio" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\portfolio\src\app\projects\1" />
       <recent name="C:\portfolio\src" />

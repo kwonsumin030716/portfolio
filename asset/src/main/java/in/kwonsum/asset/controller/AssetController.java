@@ -16,10 +16,10 @@ public class AssetController {
         try{
             System.out.println("[스프링부트 로그] Next.js 요청 확인");
             new AssetManager();
-            return "AssetManager 객체 생성 완료";
+            return "AssetManager 실행 완료";
         }catch(Exception e){
             System.out.println("[스프링부트 로그] 객체 생성 실패\n" + e.getMessage());
-            return "AssetManager 객체 생성 실패: \n" + e.getMessage();
+            return "AssetManager 에러 발생: \n" + e.getMessage();
         }
     }
 }

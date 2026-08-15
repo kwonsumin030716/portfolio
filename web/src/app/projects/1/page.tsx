@@ -19,7 +19,7 @@ export default function ProjectOnePage() {
 
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tabs`)
+        fetch("/api/proxy/tabs")
             .then((res) => {
                 if (!res.ok) throw new Error("백엔드 탭 리스트 로딩 실패");
                 return res.json();
@@ -59,7 +59,7 @@ export default function ProjectOnePage() {
                         <h1 className="text-3xl font-extrabold text-slate-900">{ data?.title }</h1>
                         <button
                             onClick={() => {
-                                fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/run`)
+                                fetch("/api/proxy/run")
                                     .then((res) => {
                                         if (!res.ok) throw new Error("백엔드 함수 실행 실패");
                                         return res.text();

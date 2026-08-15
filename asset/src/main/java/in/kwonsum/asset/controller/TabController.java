@@ -10,7 +10,7 @@ import in.kwonsum.asset.tool.FileManager;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://portfolio-sigma-smoky-74.vercel.app"})
 public class TabController {
 
     @GetMapping("/tabs")

@@ -31,7 +31,7 @@ jobs:
 
 
       - name: Deliver Boot Jar to GCP
-        uses: appleboy/scp-action@0.1.7
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.GCP_HOST }}
           username: ${{ secrets.GCP_USERNAME }}
@@ -41,7 +41,7 @@ jobs:
           strip_components: 2 
 
       - name: Execute Server Reload via SSH
-        uses: appleboy/ssh-action@1.0.3
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.GCP_HOST }}
           username: ${{ secrets.GCP_USERNAME }}

@@ -59,7 +59,10 @@ export default function ProjectOnePage() {
                         <h1 className="text-3xl font-extrabold text-slate-900">{ data?.title }</h1>
                         <button
                             onClick={() => {
-                                fetch("/api/proxy/run")
+                                fetch("/api/proxy/run", {
+                                    method: "GET",
+                                    headers: {"Authorization": "Bearer sm951316!"}
+                                })
                                     .then((res) => {
                                         if (!res.ok) throw new Error("백엔드 함수 실행 실패");
                                         return res.text();

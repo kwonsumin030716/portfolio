@@ -1,6 +1,7 @@
 package in.kwonsum.asset.controller;
 
 import in.kwonsum.asset.tool.AssetManager;
+import in.kwonsum.asset.tool.FileManager;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -12,7 +13,7 @@ import java.io.File;
 @RestController
 public class AssetController {
 
-    private final String AUTH_TOKEN = "sm951316!";
+    private static final String AUTH_TOKEN = FileManager.readEnv(FileManager.KEYPATH, "API_RUN");
 
     @GetMapping("/api/run")
     public String runAsset(@RequestHeader(value = "Authorization") String authHeader){

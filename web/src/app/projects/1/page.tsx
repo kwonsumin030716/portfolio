@@ -61,7 +61,7 @@ export default function ProjectOnePage() {
                             onClick={() => {
                                 fetch("/api/proxy/run", {
                                     method: "GET",
-                                    headers: {"Authorization": "Bearer sm951316!"}
+                                    headers: {"Authorization": `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`}
                                 })
                                     .then((res) => {
                                         if (!res.ok) throw new Error("백엔드 함수 실행 실패");

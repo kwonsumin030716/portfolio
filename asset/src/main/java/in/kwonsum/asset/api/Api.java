@@ -96,7 +96,8 @@ public abstract class Api {
                 System.out.println("[API] 타임 아웃 에러 발생 ");
 
             }catch(Exception e){
-                Discord.printLog(e);
+//                Discord.printLog(e);
+                e.printStackTrace();
             }
         }
         return res;

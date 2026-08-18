@@ -3,6 +3,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import { projectData } from "@/data/projects";
 
 interface Point {
     x: number;
@@ -12,6 +13,8 @@ interface Point {
 type CurveType = 'bezier' | 'bspline' | 'hermite';
 
 export default function CurvePage(){
+    const data = projectData.find((item) => item.id == 2);
+
     const [curveType, setCurveType] = useState<CurveType>('bezier');
     const [points, setPoints] = useState<Point[]>([]);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);

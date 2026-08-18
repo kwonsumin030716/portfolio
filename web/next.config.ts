@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+
 const nextConfig: NextConfig = {
 
     allowedDevOrigins: ['222.112.156.77'],
@@ -8,7 +10,7 @@ const nextConfig: NextConfig = {
         return [
             {
                 source: '/api/proxy/:path*',
-                destination: 'http://35.255.26.248:8080/api/:path*',
+                destination: `${BACKEND_URL}/api/:path*`,
             },
         ];
     },

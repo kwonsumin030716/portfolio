@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 
@@ -22,7 +23,10 @@ import in.kwonsum.asset.dto.AllocSet;
 
 
 public abstract class Api {
-    protected static OkHttpClient client = new OkHttpClient();
+    protected static OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .build();
     protected static Gson gson = new Gson();
     private static LocalDateTime lastRequestTime = LocalDateTime.now();
 
@@ -74,7 +78,7 @@ public abstract class Api {
 
             try(Response response = client.newCall(request).execute()){
                 // System.out.println(response);
-//                 System.out.println("\nRequesting: " + request.url());
+                 System.out.println("\nRequesting: " + request.url());
                 // System.out.print("|");
                 lastRequestTime = LocalDateTime.now();
                 code = response.code();

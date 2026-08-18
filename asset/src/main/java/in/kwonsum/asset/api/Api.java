@@ -76,6 +76,10 @@ public abstract class Api {
             if (lastRequestTime.plusSeconds(1).isAfter(LocalDateTime.now())) {
                 try {
                     Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    System.err.println("외부 타임아웃(스케줄러/Next.js)에 의해 대기 스레드가 강제 종료되었습니다.");
+                    Thread.currentThread().interrupt();
+                    break;
                 } catch (Exception e) {
                     Discord.printLog(e);
                 }

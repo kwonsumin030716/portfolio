@@ -85,7 +85,7 @@ export default function CurvePage(){
     }
 
     return (
-        <BasePage projectData={data}>
+        <BasePage projectData={data!}>
             <div>
                 hello
             </div>

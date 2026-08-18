@@ -1,7 +1,6 @@
 'use client';
 
 import React, {useState, useRef, useEffect} from 'react';
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { projectData } from "@/data/projects";
 import BasePage from "@/components/BasePage";

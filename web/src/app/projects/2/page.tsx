@@ -97,38 +97,37 @@ export default function CurvePage(){
                     </div>
                     <div className="flex justify-between items-center mb-10 w-full">
                         <h1 className="text-3xl font-extrabold text-slate-900">{ data?.title }</h1>
-
-                        <div style={{ margin: '15px', padding: '10px', background: 'white', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-                            {(['bezier', 'bspline', 'hermite'] as CurveType[]).map((type) => (
-                                <label key={type} style={{ marginRight: '15px', fontWeight: 'bold', cursor: 'pointer', textTransform: 'capitalize' }}>
-                                    <input
-                                        type="radio"
-                                        name="curveType"
-                                        value={type}
-                                        checked={curveType === type}
-                                        onChange={(e) => setCurveType(e.target.value as CurveType)}
-                                        style={{ marginRight: '5px' }}
-                                    />
-                                    {type === 'bspline' ? 'B-Spline' : type}
-                                </label>
-                            ))}
-                            <button
-                                onClick={handleClear}
-                                style={{ padding: '6px 12px', backgroundColor: '#ff4757', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
-                            >
-                                점 초기화
-                            </button>
-                        </div>
-
-                        {/* 캔버스 영역 */}
-                        <canvas
-                            ref={canvasRef}
-                            width={800}
-                            height={500}
-                            onClick={handleCanvasClick}
-                            style={{ background: 'white', border: '2px solid #333', borderRadius: '4px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', cursor: 'crosshair' }}
-                        />
                     </div>
+                    <div style={{ margin: '15px', padding: '10px', background: 'white', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                        {(['bezier', 'bspline', 'hermite'] as CurveType[]).map((type) => (
+                            <label key={type} style={{ marginRight: '15px', fontWeight: 'bold', cursor: 'pointer', textTransform: 'capitalize' }}>
+                                <input
+                                    type="radio"
+                                    name="curveType"
+                                    value={type}
+                                    checked={curveType === type}
+                                    onChange={(e) => setCurveType(e.target.value as CurveType)}
+                                    style={{ marginRight: '5px' }}
+                                />
+                                {type === 'bspline' ? 'B-Spline' : type}
+                            </label>
+                        ))}
+                        <button
+                            onClick={handleClear}
+                            style={{ padding: '6px 12px', backgroundColor: '#ff4757', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                        >
+                            점 초기화
+                        </button>
+                    </div>
+
+                    {/* 캔버스 영역 */}
+                    <canvas
+                        ref={canvasRef}
+                        width={800}
+                        height={500}
+                        onClick={handleCanvasClick}
+                        style={{ background: 'white', border: '2px solid #333', borderRadius: '4px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', cursor: 'crosshair' }}
+                    />
                 </article>
             </div>
         </div>

@@ -84,7 +84,7 @@ export default function CurvePage(){
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px', fontFamily: 'sans-serif' }}>
+        <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
             <Navbar />
             <Link href="/" className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-800 mb-8 transition">
                 ← 목록으로 돌아가기

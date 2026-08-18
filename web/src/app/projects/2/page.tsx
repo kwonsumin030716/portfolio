@@ -44,7 +44,7 @@ export default function CurvePage(){
 
         ctx.fillStyle = '#ff4757';
         points.forEach((p, index) => {
-            crx.beginPath();
+            ctx.beginPath();
             ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
             ctx.fill();
 
@@ -94,9 +94,8 @@ export default function CurvePage(){
                 <div className="flex justify-between items-center mb-10 w-full">
                     <h1 className="text-3xl font-extrabold text-slate-900">{ data?.title }</h1>
 
-                    {/* 라디오 버튼 컨트롤러 */}
                     <div style={{ margin: '15px', padding: '10px', background: 'white', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-                        {(['bezier', 'bspline', 'cubic', 'hermite'] as CurveType[]).map((type) => (
+                        {(['bezier', 'bspline', 'hermite'] as CurveType[]).map((type) => (
                             <label key={type} style={{ marginRight: '15px', fontWeight: 'bold', cursor: 'pointer', textTransform: 'capitalize' }}>
                                 <input
                                     type="radio"
@@ -106,7 +105,7 @@ export default function CurvePage(){
                                     onChange={(e) => setCurveType(e.target.value as CurveType)}
                                     style={{ marginRight: '5px' }}
                                 />
-                                {type === 'cubic' ? 'Natural Cubic' : type === 'bspline' ? 'B-Spline' : type}
+                                {type === 'bspline' ? 'B-Spline' : type}
                             </label>
                         ))}
                         <button

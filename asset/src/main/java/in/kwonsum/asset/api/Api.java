@@ -90,7 +90,8 @@ public abstract class Api {
                 }
                 res.put("header", gson.toJson(headerMap));
                 res.put("body", response.body().string());
-//                System.out.println(res.get("body"));
+                System.out.println(res.get("header"));
+                System.out.println(res.get("body"));
             }catch(SocketTimeoutException e){
                 System.out.println("[API] 타임 아웃 에러 발생 ");
 

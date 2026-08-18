@@ -1,6 +1,8 @@
 package in.kwonsum.asset.api;
 
 
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,29 +68,32 @@ public abstract class Api {
         Map<String, String> res = new HashMap<>();
 
         int code = 0;
-        while(code != 200 && code != 201 && code != 204){
+        while(code != 200 && code != 201 && code != 204) {
 
-            if(lastRequestTime.plusSeconds(1).isAfter(LocalDateTime.now())){
-                try{
+            if (lastRequestTime.plusSeconds(1).isAfter(LocalDateTime.now())) {
+                try {
                     Thread.sleep(100);
-                }catch(Exception e){
+                } catch (Exception e) {
                     Discord.printLog(e);
                 }
             }
 
-            try(Response response = client.newCall(request).execute()){
+            try (Response response = client.newCall(request).execute()) {
                 // System.out.println(response);
-                 System.out.println("\nRequesting: " + request.url());
+                System.out.println("\nRequesting: " + request.url());
                 // System.out.print("|");
                 lastRequestTime = LocalDateTime.now();
                 code = response.code();
                 Map<String, String> headerMap = new HashMap<>();
-                for(String name : response.headers().names()){
+                for (String name : response.headers().names()) {
                     headerMap.put(name, response.header(name));
                 }
                 res.put("header", gson.toJson(headerMap));
                 res.put("body", response.body().string());
 //                System.out.println(res.get("body"));
+            }catch(SocketTimeoutException e){
+                System.out.println("[API] 타임 아웃 에러 발생 ");
+
             }catch(Exception e){
                 Discord.printLog(e);
             }

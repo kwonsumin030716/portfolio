@@ -11,9 +11,9 @@ export const projectData = [
         id:2,
         tag: "Project 02",
         tagColor: "text-blue-600 bg-blue-50",
-        title: "웹 서버 개발",
-        desc: "스프링부트와 Next.js를 활용하여 포트폴리오로 기록합니다.",
-        lang: "SPRING BOOT / Next.js"
+        title: "수치해석 Curve 시각화",
+        desc: "Hermit, Bezier, BSpline 곡선을 시각화합니다.",
+        lang: "TypeScript"
     },
     {
         id:3,

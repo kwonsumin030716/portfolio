@@ -40,7 +40,8 @@ export default function CurvePage(){
                 });
             }
         });
-        resizeObserver.observe(containerRef.current);
+
+        resizeObserver.observe(containerRef.current!);
     }, []);
 
     //그리기

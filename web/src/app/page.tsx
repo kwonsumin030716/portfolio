@@ -21,7 +21,7 @@ export default function Home() {
         return () => clearTimeout(timer);
     }, []);
 
-    const CORRECT_PASSWORD = "951316";
+    const CORRECT_PASSWORD = "250920";
 
     const verify = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();

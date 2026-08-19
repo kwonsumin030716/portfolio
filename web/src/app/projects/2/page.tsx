@@ -70,7 +70,7 @@ export default function CurvePage(){
         });
 
         drawLine(ctx, points, showLine);
-    }, [dimensions, points, showLine]);
+    }, [dimensions, points, showLine, curveType]);
 
     //캔버스 클릭 제어
     const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -147,10 +147,75 @@ export default function CurvePage(){
     };
 
     const drawBezier = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
+        if(points.length < 2) return;
 
+        const steps = 100;
+        ctx.beginPath();
+
+        for(let i = 0; i <= steps; i++){
+            const t = i / steps;
+            const point = calculateBezierPoint(points, t);
+
+            if(i === 0){
+                ctx.moveTo(point.x, point.y);
+            }else{
+                ctx.lineTo(point.x, point.y);
+            }
+        }
+
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        //보조선
+        if(showLine){
+            let currentLayer = [...points];
+            const colors = ['#ff4d4f', '#10b981', '#f59e0b']; // 레이어별 보조선 색상
+            let colorIdx = 0;
+
+            for(let i=0; i<colors.length; i++){
+
+                if (!currentLayer || currentLayer.length < 2) {
+                    break;
+                }
+                ctx.beginPath();
+                ctx.moveTo(currentLayer[0].x, currentLayer[0].y);
+
+                const nextPoints: Point[] = [];
+                for(let j=1; j<currentLayer.length; j++){
+                    ctx.lineTo(currentLayer[j].x, currentLayer[j].y);
+                    nextPoints.push({
+                        x: (currentLayer[j-1].x + currentLayer[j].x) / 2,
+                        y: (currentLayer[j-1].y + currentLayer[j].y) / 2
+                    })
+                }
+                ctx.strokeStyle = colors[colorIdx % colors.length] + '80';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                colorIdx++;
+
+                for(let j=0; j<nextPoints.length; j++){
+                    currentLayer[j] = nextPoints[j];
+                }
+                currentLayer.pop();
+            }
+        }
     }
+
     const drawBSpline = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
 
+    }
+
+    const calculateBezierPoint = (points: Point[], t:number): Point => {
+        if(points.length === 1) return points[0];
+
+        const nextPoints: Point[] = [];
+        for(let i = 0; i < points.length - 1; i++){
+            const x = (1 - t) * points[i].x + t * points[i+1].x;
+            const y = (1 - t) * points[i].y + t * points[i+1].y;
+            nextPoints.push({x,y});
+        }
+        return calculateBezierPoint(nextPoints,t);
     }
 
 
@@ -191,7 +256,9 @@ export default function CurvePage(){
                         {CURVE_TYPE.map((type, index) => (
                             <button
                                 key={index}
-                                onClick={() => setCurveType(type)}
+                                onClick={() =>
+                                    setCurveType(type)
+                                }
                                 className={`px-4 py-2 font-medium text-base transition-all -mb-px cursor-pointer ${
                                     type === curveType
                                         ? "border-b-2 border-[#1F41B0] text-[#1F41B0] font-semibold"

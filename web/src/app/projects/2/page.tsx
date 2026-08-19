@@ -83,7 +83,7 @@ export default function CurvePage(){
         setPoints((prev) => [...prev, {x,y}]);
     }
 
-    const drawLine = (ctx: CanvasRenderingContext2D, points: Points[], showLine: showLine) => {
+    const drawLine = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
         if(curveType === 'hermite'){
             drawHermite(ctx, points, showLine);
         }else if(curveType === 'bezier'){
@@ -93,7 +93,7 @@ export default function CurvePage(){
         }
     }
 
-    const drawHermite = (ctx: CanvasRenderingContext2D, points: Point[], showLine: showLine) => {
+    const drawHermite = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
         if(points.length < 4) return;
 
         ctx.strokeStyle = '#1F41B0';
@@ -145,10 +145,10 @@ export default function CurvePage(){
         }
     };
 
-    const drawBezier = (ctx: CanvasRenderingContext2D, points: Point[], showLine: showLine) => {
+    const drawBezier = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
 
     }
-    const drawBSpline = (ctx: CanvasRenderingContext2D, points: Point[], showLine: showLine) => {
+    const drawBSpline = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
 
     }
 

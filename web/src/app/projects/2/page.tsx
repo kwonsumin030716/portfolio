@@ -128,7 +128,7 @@ export default function CurvePage(){
 
             for(let u=0; u <= split; u++){
                 const p = getPu(u/split, c);
-                if(i === 0 & u === 0){
+                if(i === 0 && u === 0){
                     ctx.moveTo(p.x, p.y);
                 }else{
                     ctx.lineTo(p.x, p.y);
@@ -222,7 +222,7 @@ export default function CurvePage(){
 
             for(let u=0; u<=split; u++){
                 const p = getPu(u/split, c);
-                if(i === 0 & u === 0){
+                if(i === 0 && u === 0){
                     ctx.moveTo(p.x, p.y);
                 }else{
                     ctx.lineTo(p.x, p.y);
@@ -290,7 +290,7 @@ export default function CurvePage(){
             const c = getC(M_HERMITE, current);
             for(let u=0; u<=split; u++){
                 const p = getPu(u/split, c);
-                if(i === 0 & u === 0){
+                if(i === 0 && u === 0){
                     ctx.moveTo(p.x, p.y);
                 }else{
                     ctx.lineTo(p.x, p.y);
@@ -328,7 +328,7 @@ export default function CurvePage(){
     }
 
     //c = Mp
-    const getC = (M: number[][], p: Point[]): number[] => {
+    const getC = (M: number[][], p: Point[]): Point[] => {
          const c:Point[] = [];
          for(let i=0; i<4; i++){
              let cx = 0;

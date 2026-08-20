@@ -11,21 +11,56 @@ interface Point {
     y: number;
 }
 
-const CURVE_TYPE = ['hermite', 'bezier', 'bspline']  as const;
+const CURVE_TYPE = ['interpolation', 'hermite', 'bezier', 'bspline', 'catmull rom']  as const;
 type CurveType = (typeof CURVE_TYPE)[number];
+
+const M_INTERPOLATION = [
+    [   1,     0,     0,    0],
+    [-5.5,     9,  -4.5,    1],
+    [   9, -22.5,    18, -4.5],
+    [-4.5,  13.5, -13.5,  4.5]
+];
+
+const M_HERMITE: number[][] = [
+    [ 1,  0,  0,  0],
+    [ 0,  0,  1,  0],
+    [-3,  3, -2, -1],
+    [ 2, -2, 1,  1]
+];
+
+const M_BEZIER: number[][] = [
+    [ 1,  0,  0, 0],
+    [-3,  3,  0, 0],
+    [ 3, -6,  3, 0],
+    [-1,  3, -3, 1]
+];
+
+const M_B_SPLINE: number[][] = [
+    [ 1/6,  4/6,  1/6,  0],
+    [-3/6,  0/6,  3/6,  0],
+    [ 3/6, -6/6,  3/6,  0],
+    [-1/6,  3/6, -3/6, 1/6]
+];
+
+const M_CATMULL_ROM: number[][] = [
+    [ 0,    1,    0,    0  ],
+    [-0.5,  0,    0.5,  0  ],
+    [ 1,   -2.5,  2,   -0.5],
+    [-0.5,  1.5, -1.5,  0.5]
+];
 
 export default function CurvePage(){
     const data = projectData.find((item) => item.id == 2);
 
-
-    const [curveType, setCurveType] = useState<CurveType>('hermite');
+    const [curveType, setCurveType] = useState<CurveType>('interpolation');
     const [points, setPoints] = useState<Point[]>([]);
     const [dimensions, setDimensions] = useState({width: 600, height: 400});
     const [showLine, setShowLine] = useState<boolean>(true);
 
-
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    const split = 100;
 
     //크기 조절
     useEffect(() => {
@@ -51,26 +86,234 @@ export default function CurvePage(){
         const ctx = canvas.getContext('2d');
         if(!ctx) return;
 
-        ctx.clearRect(0,0,canvas.width, canvas.height);
-        ctx.strokeStyle = '#f8fafc';
-        ctx.lineWidth = 1;
+        //화면 초기화
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        for (let i = 0; i < canvas.width; i += 40) {
-            ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
-        }
-        for (let i = 0; i < canvas.height; i += 40) {
-            ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
-        }
-
-        points.forEach((point, index) => {
-            ctx.fillStyle = index === 0 ? '#ef4444' : '#1f41b0';
+        //제어점 그리기
+        points.forEach((pt) => {
             ctx.beginPath();
-            ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+            ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#1F41B0';
             ctx.fill();
-        });
+        })
 
-        drawLine(ctx, points, showLine);
+        //분기 준비
+
+
+        //선택한 곡선에 따라 분기
+        if(curveType === 'catmull rom'){
+            drawSlide(M_CATMULL_ROM, points, ctx);
+        } else if(curveType === 'bspline'){
+            drawSlide(M_B_SPLINE, points, ctx);
+        } else if(curveType === 'bezier'){
+            drawConnect(M_BEZIER, points, ctx);
+        } else if(curveType === 'interpolation'){
+           drawConnect(M_INTERPOLATION, points, ctx);
+        } else if(curveType === 'hermite'){
+            drawHermit(points, ctx);
+        }
+
+
+
     }, [dimensions, points, showLine, curveType]);
+
+    const drawSlide = (M: number[][], points:Point[], ctx: CanvasRenderingContext2D) => {
+        if(points.length < 4) return;
+
+        ctx.beginPath();
+        for(let i=0; i<points.length-3; i++){
+            const current = points.slice(i, i+4);
+
+            const c = getC(M, current);
+
+            for(let u=0; u <= split; u++){
+                const p = getPu(u/split, c);
+                if(i === 0 & u === 0){
+                    ctx.moveTo(p.x, p.y);
+                }else{
+                    ctx.lineTo(p.x, p.y);
+                }
+            }
+        }
+        ctx.stroke();
+
+        if(showLine && M === M_CATMULL_ROM){
+
+            if (curveType === 'catmull rom' && points.length >= 4) {
+                ctx.save();
+
+                // 보조선 스타일 (투명한 회색 점선)
+                ctx.strokeStyle = "rgba(170, 170, 170, 0.8)";
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([5,5]);
+
+                for (let i = 0; i < points.length - 3; i++) {
+                    const p0 = points[i];
+                    const p1 = points[i + 1]; // 곡선 조각의 시작점
+                    const p2 = points[i + 2]; // 곡선 조각의 끝점
+                    const p3 = points[i + 3];
+
+                    // ------------------------------------------------------------------
+                    // 1. P0에서 P2로 향하는 오리지널 가이드 뼈대선 그리기
+                    // ------------------------------------------------------------------
+                    ctx.beginPath();
+                    ctx.moveTo(p0.x, p0.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+
+                    // ------------------------------------------------------------------
+                    // 2. 시작점 P1에서의 접선 벡터 (P2 - P0) / 2 계산 및 시각화
+                    // ------------------------------------------------------------------
+                    // 벡터 계산 (P2 - P0)
+                    const t1X = p2.x - p0.x;
+                    const t1Y = p2.y - p0.y;
+
+                    // 공식 그대로 딱 절반(/2) 크기의 벡터로 만듭니다.
+                    const halfT1X = t1X / 2;
+                    const halfT1Y = t1Y / 2;
+
+                    // 이 절반 크기의 벡터를 시작점 P1을 중심으로 앞뒤로 뻗어나가게 그립니다.
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x - halfT1X * 0.5, p1.y - halfT1Y * 0.5);
+                    ctx.lineTo(p1.x + halfT1X * 0.5, p1.y + halfT1Y * 0.5);
+
+                    // 접선임을 강조하기 위해 색상을 살짝 다르게 하거나 두께를 조절할 수 있습니다.
+                    ctx.save();
+                    ctx.strokeStyle = "rgba(30, 144, 255, 0.8)"; // 은은한 파란빛 회색
+                    ctx.stroke();
+                    ctx.restore();
+
+
+                    // ------------------------------------------------------------------
+                    // 3. (선택 사항) 끝점 P2에서의 접선 벡터 (P3 - P1) / 2 도 똑같이 시각화
+                    // ------------------------------------------------------------------
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p3.x, p3.y);
+                    ctx.stroke();
+
+                    const t2X = p3.x - p1.x;
+                    const t2Y = p3.y - p1.y;
+                    const halfT2X = t2X / 2;
+                    const halfT2Y = t2Y / 2;
+
+                    ctx.beginPath();
+                    ctx.moveTo(p2.x - halfT2X * 0.5, p2.y - halfT2Y * 0.5);
+                    ctx.lineTo(p2.x + halfT2X * 0.5, p2.y + halfT2Y * 0.5);
+                    ctx.save();
+                    ctx.strokeStyle = "rgba(30, 144, 255, 0.6)";
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                ctx.restore();
+            }
+        }
+    }
+
+    const drawConnect = (M: number[][], points: Point[], ctx: CanvasRenderingContext2D) => {
+        if(points.length < 4) return;
+
+        ctx.beginPath();
+        for(let i=0; i<points.length-3; i += 3){
+            const current = points.slice(i, i+4);
+
+            const c = getC(M, current);
+
+            for(let u=0; u<=split; u++){
+                const p = getPu(u/split, c);
+                if(i === 0 & u === 0){
+                    ctx.moveTo(p.x, p.y);
+                }else{
+                    ctx.lineTo(p.x, p.y);
+                }
+            }
+        }
+        ctx.stroke();
+
+
+
+        if(showLine && M === M_BEZIER){
+            const color: string[] = [
+                "rgba(255, 65, 84, 0.85)",
+                "rgba(255, 212, 38, 0.90)",
+                "rgba(34, 211, 142, 0.95)"
+            ];
+
+            ctx.save();
+            for(let i=0; i<points.length - 3; i += 3){
+                let current = points.slice(i, i+4);
+                for(let j = 0; j<3; j++){
+                    ctx.strokeStyle = color[j];
+                    ctx.beginPath();
+
+                    for (let k = 0; k < current.length; k++) {
+                        if (k === 0) {
+                            ctx.moveTo(current[k].x, current[k].y);
+                        } else {
+                            ctx.lineTo(current[k].x, current[k].y);
+                        }
+                    }
+                    ctx.stroke();
+
+                    const nextPoints: Point[] = [];
+
+                    for(let k=0; k<3-j; k++){
+                        const pair = current.slice(k, k+2);
+                        const x = pair.reduce((acc, cur: Point) => acc + cur.x, 0) / 2;
+                        const y = pair.reduce((acc, cur: Point) => acc + cur.y, 0) / 2;
+
+                        nextPoints.push({x,y});
+                    }
+                    current = nextPoints;
+                }
+            }
+
+            ctx.restore();
+        }
+
+
+    }
+
+    const drawHermit = (points: Point[], ctx: CanvasRenderingContext2D) => {
+        let current: Point[] = [];
+        const split = 100;
+
+        ctx.beginPath();
+        if(points.length < 4) return;
+        for(let i=0; i<points.length-3; i += 2){
+            current.push(points[i]);
+            current.push(points[i+2]);
+            current.push({x: points[i+1].x - points[i].x, y: points[i+1].y - points[i].y});
+            current.push({x: points[i+3].x - points[i+2].x, y: points[i+3].y - points[i+2].y});
+
+            const c = getC(M_HERMITE, current);
+            for(let u=0; u<=split; u++){
+                const p = getPu(u/split, c);
+                if(i === 0 & u === 0){
+                    ctx.moveTo(p.x, p.y);
+                }else{
+                    ctx.lineTo(p.x, p.y);
+                }
+            }
+            current = [];
+        }
+        ctx.stroke();
+
+        if(showLine){
+            ctx.save();
+            ctx.beginPath();
+            for(let i=0; i<points.length - 1; i += 2){
+                ctx.moveTo(points[i].x, points[i].y);
+                ctx.lineTo(points[i+1].x, points[i+1].y);
+            }
+            ctx.strokeStyle = 'rgba(100, 100, 100, 0.8)';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([5, 5]);
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
 
     //캔버스 클릭 제어
     const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -84,140 +327,35 @@ export default function CurvePage(){
         setPoints((prev) => [...prev, {x,y}]);
     }
 
-    const drawLine = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
-        if(curveType === 'hermite'){
-            drawHermite(ctx, points, showLine);
-        }else if(curveType === 'bezier'){
-            drawBezier(ctx, points, showLine);
-        }else if(curveType === 'bspline'){
-            drawBSpline(ctx, points, showLine);
-        }
+    //c = Mp
+    const getC = (M: number[][], p: Point[]): number[] => {
+         const c:Point[] = [];
+         for(let i=0; i<4; i++){
+             let cx = 0;
+             let cy = 0;
+             for(let j=0; j<4; j++){
+                 cx += M[i][j] * p[j].x;
+                 cy += M[i][j] * p[j].y;
+             }
+             c.push({x: cx, y: cy});
+         }
+         return c;
     }
 
-    const drawHermite = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
-        if(points.length < 4) return;
+    //p(u) = uTc
+    const getPu = (u: number, c: Point[]): Point => {
+        let px = 0;
+        let py = 0;
 
-        ctx.strokeStyle = '#1F41B0';
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-
-        for(let i=0; i<points.length -3; i += 2){
-            const p00 = points[i];
-            const p01 = points[i+1];
-            const p10 = points[i+2];
-            const p11 = points[i+3];
-
-            const a0 = {x: (p01.x - p00.x), y: (p01.y - p00.y)};
-            const a1 = {x: (p11.x - p10.x), y: (p11.y - p10.y)};
-
-            for(let t = 0; t <= 1; t += 0.02){
-                const t2 = t * t;
-                const t3 = t2 * t;
-
-                const h00 = 2 * t3 - 3 * t2 + 1;
-                const h01 = - 2 * t3 + 3 * t2;
-                const h10 = t3 - 2 * t2 + t;
-                const h11 = t3 - t2;
-
-                const x = h00 * p00.x + h01 * p10.x + h10 * a0.x + h11 * a1.x;
-                const y = h00 * p00.y + h01 * p10.y + h10 * a0.y + h11 * a1.y;
-
-                if(t === 0 && i === 0){
-                    ctx.moveTo(x,y);
-                }else{
-                    ctx.lineTo(x,y);
-                }
-            }
-        }
-        ctx.stroke();
-
-        if (showLine) {
-            ctx.strokeStyle = '#94a3b8';
-            ctx.lineWidth = 1.5;
-            ctx.setLineDash([5, 5]);
-
-            for (let i = 0; i < points.length - 1; i += 2) {
-                ctx.beginPath();
-                ctx.moveTo(points[i].x, points[i].y);
-                ctx.lineTo(points[i + 1].x, points[i + 1].y);
-                ctx.stroke();
-            }
-            ctx.setLineDash([]);
-        }
-    };
-
-    const drawBezier = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
-        if(points.length < 2) return;
-
-        const steps = 100;
-        ctx.beginPath();
-
-        for(let i = 0; i <= steps; i++){
-            const t = i / steps;
-            const point = calculateBezierPoint(points, t);
-
-            if(i === 0){
-                ctx.moveTo(point.x, point.y);
-            }else{
-                ctx.lineTo(point.x, point.y);
-            }
+        let j = 1;
+        for(let i=0; i<4; i++){
+            px += j * c[i].x;
+            py += j * c[i].y;
+            j *= u;
         }
 
-        ctx.strokeStyle = '#3b82f6';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-
-        //보조선
-        if(showLine){
-            let currentLayer = [...points];
-            const colors = ['#ff4d4f', '#10b981', '#f59e0b']; // 레이어별 보조선 색상
-            let colorIdx = 0;
-
-            for(let i=0; i<colors.length; i++){
-
-                if (!currentLayer || currentLayer.length < 2) {
-                    break;
-                }
-                ctx.beginPath();
-                ctx.moveTo(currentLayer[0].x, currentLayer[0].y);
-
-                const nextPoints: Point[] = [];
-                for(let j=1; j<currentLayer.length; j++){
-                    ctx.lineTo(currentLayer[j].x, currentLayer[j].y);
-                    nextPoints.push({
-                        x: (currentLayer[j-1].x + currentLayer[j].x) / 2,
-                        y: (currentLayer[j-1].y + currentLayer[j].y) / 2
-                    })
-                }
-                ctx.strokeStyle = colors[colorIdx % colors.length] + '80';
-                ctx.lineWidth = 1;
-                ctx.stroke();
-                colorIdx++;
-
-                for(let j=0; j<nextPoints.length; j++){
-                    currentLayer[j] = nextPoints[j];
-                }
-                currentLayer.pop();
-            }
-        }
+        return {x: px, y: py};
     }
-
-    const drawBSpline = (ctx: CanvasRenderingContext2D, points: Point[], showLine: boolean) => {
-
-    }
-
-    const calculateBezierPoint = (points: Point[], t:number): Point => {
-        if(points.length === 1) return points[0];
-
-        const nextPoints: Point[] = [];
-        for(let i = 0; i < points.length - 1; i++){
-            const x = (1 - t) * points[i].x + t * points[i+1].x;
-            const y = (1 - t) * points[i].y + t * points[i+1].y;
-            nextPoints.push({x,y});
-        }
-        return calculateBezierPoint(nextPoints,t);
-    }
-
 
     return (
         <BasePage
@@ -269,7 +407,7 @@ export default function CurvePage(){
                             </button>
                         ))}
                     </div>
-                    <div ref={containerRef} className="w-full border">
+                    <div ref={containerRef} className="w-full h-[400px] border">
                         <canvas
                             ref = {canvasRef}
                             width={dimensions.width}

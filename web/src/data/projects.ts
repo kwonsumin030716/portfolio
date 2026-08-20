@@ -15,12 +15,12 @@ export const projectData = [
         desc: "Hermit, Bezier, BSpline 곡선을 시각화합니다.",
         lang: "TypeScript"
     },
-    {
-        id:3,
-        tag: "Project 03",
-        tagColor: "text-blue-600 bg-blue-50",
-        title: "자기야",
-        desc: "사랑해",
-        lang: "예원"
-    }
+    // {
+    //     id:3,
+    //     tag: "Project 03",
+    //     tagColor: "text-blue-600 bg-blue-50",
+    //     title: "자기야",
+    //     desc: "사랑해",
+    //     lang: "예원"
+    // }
 ]

@@ -119,27 +119,37 @@ export default function CurvePage(){
     }, [dimensions, points, showLine, curveType]);
 
     const drawSlide = (M: number[][], points:Point[], ctx: CanvasRenderingContext2D) => {
-        if(points.length < 4) return;
-
-        ctx.beginPath();
-        for(let i=0; i<points.length-3; i++){
-            const current = points.slice(i, i+4);
+        if(points.length >= 4){
+            ctx.beginPath();
+            for(let i=0; i<points.length-3; i++){
+                const current = points.slice(i, i+4);
 
             const c = getC(M, current);
 
-            for(let u=0; u <= split; u++){
-                const p = getPu(u/split, c);
-                if(i === 0 && u === 0){
-                    ctx.moveTo(p.x, p.y);
-                }else{
-                    ctx.lineTo(p.x, p.y);
+                for(let u=0; u <= split; u++){
+                    const p = getPu(u/split, c);
+                    if(i === 0 && u === 0){
+                        ctx.moveTo(p.x, p.y);
+                    }else{
+                        ctx.lineTo(p.x, p.y);
+                    }
                 }
             }
+            ctx.stroke();
         }
-        ctx.stroke();
 
-        if(showLine && M === M_CATMULL_ROM){
+        if(showLine){
+            if(M === M_B_SPLINE && points.length > 1){
+                ctx.save();
+                ctx.strokeStyle = "#1F41B0";
+                for(let i=0;i<points.length;i++){
+                    if(i === 0) ctx.moveTo(points[i].x, points[i].y);
+                    else ctx.lineTo(points[i].x, points[i].y);
+                }
+                ctx.stroke();
+                ctx.restore();
 
+            }
             if (curveType === 'catmull rom' && points.length >= 4) {
                 ctx.save();
 
@@ -219,7 +229,7 @@ export default function CurvePage(){
         for(let i=0; i<points.length-3; i += 3){
             const current = points.slice(i, i+4);
 
-            const c = getC(M, current);
+                const c = getC(M, current);
 
             for(let u=0; u<=split; u++){
                 const p = getPu(u/split, c);

@@ -5,6 +5,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import Link from "next/link";
 import { projectData } from "@/data/projects";
 import BasePage from "@/components/BasePage";
+import Explanation from "./Explanation";
 
 interface Point {
     x: number;
@@ -417,7 +418,7 @@ export default function CurvePage(){
 
                         />
                     </div>
-
+                    <Explanation />
                 </>
             )}
         />

@@ -62,8 +62,31 @@ export default function CurvePage(){
     const conceptRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const split = 100;
+
+    //가로 스크롤
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        // 2. 휠 이벤트를 처리할 순수 자바스크립트 함수 정의
+        const handleWheel = (e: WheelEvent) => {
+            // passive: false 상태이므로 브라우저의 기본 화면 스크롤 동작이 완벽하게 차단됩니다.
+            e.preventDefault();
+
+            // 마우스 휠 양만큼 가로로 스크롤 이동
+            container.scrollLeft += e.deltaY;
+        };
+        // 3. ★ 핵심: { passive: false } 옵션을 주어 휠 이벤트의 락을 강제로 해제하고 등록합니다.
+        container.addEventListener('wheel', handleWheel, { passive: false });
+
+        // 4. 컴포넌트가 사라질 때 이벤트 리스너를 깔끔하게 제거해 줍니다.
+        return () => {
+            container.removeEventListener('wheel', handleWheel);
+        };
+    }, []);
 
     //자동 스크롤
     useEffect(() => {
@@ -412,7 +435,9 @@ export default function CurvePage(){
                         </label>
                     </div>
 
-                    <div className="flex border-b border-slate-200 mb-6 whitespace-nowrap">
+                    <div
+                        ref={scrollContainerRef}
+                        className="flex border-b border-slate-200 mb-6 whitespace-nowrap overflow-x-auto overflow-y-hidden overscroll-x-contain">
                         {CURVE_TYPE.map((type, index) => (
                             <button
                                 key={index}

@@ -6,7 +6,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 export default function Explanation(){
 
     const interpolation = ["0", "1/3", "2/3", "1"];
-    const xyz = ["x","y"];
+    const xy = ["x","y"];
 
     return (
         <div className="mt-10">
@@ -166,20 +166,29 @@ export default function Explanation(){
             <div className="mb-10">
                 <h1 className="font-bold text-xl mb-4 mt-6">행렬 방정식 (Matrix Equation)</h1>
                 <div className="text-sm ml-2 space-y-2">
+                    <p>4개의 점에 대한 방정식을 행렬 형태로 정리</p>
                     <ul className="list-disc list-outside space-y-2 ml-6">
-                        <li></li>
+                        <li><InlineMath math="p_0=p(0)=c_0"/></li>
+                        <li><InlineMath math="p_1 = p(1/3) = c_0 + {\scriptscriptstyle\frac{1}{3}}c_1 + \left({\scriptscriptstyle\frac{1}{3}}\right)^2 c_2 + \left({\scriptscriptstyle\frac{1}{3}}\right)^3 c_3"/></li>
+                        <li><InlineMath math="p_2 = p(2/3) = c_0 + {\scriptscriptstyle\frac{2}{3}}c_1 + \left({\scriptscriptstyle\frac{2}{3}}\right)^2 c_2 + \left({\scriptscriptstyle\frac{2}{3}}\right)^3 c_3"/></li>
+                        <li><InlineMath math="p_3=p(1)=c_0+c_1+c_2+c_3"/></li>
                     </ul>
+                    <p><InlineMath math="p=Ac,\:p=\begin{bmatrix}p_0\\p_1\\p_2\\p_3\end{bmatrix},c=\begin{bmatrix}c_0\\c_1\\c_2\\c_3\end{bmatrix}"/></p>
+                    <p><InlineMath math="A=\begin{bmatrix}1&0&0&0\\1&1/3&1/9&1/27\\1&2/3&4/9&8/27\\1&1&1&1\end{bmatrix}"/></p>
+                    <p>미지수&nbsp;<InlineMath math="c"/>를 알기 위해&nbsp;<InlineMath math="c=A^{-1}p"/>&nbsp;계산</p>
+                    <p><strong>보간 기하 행렬:&nbsp;</strong><InlineMath math="M=A^{-1}"/></p>
+                    <p><InlineMath math="M=A^{-1}=\begin{bmatrix}1&0&0&0\\-5.5&9&-4.5&1\\9&-22.5&18&-4.5\\-4.5&13.5&-13.5&4.5\end{bmatrix}"/></p>
                 </div>
             </div>
             <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6"></h1>
+                <h1 className="font-bold text-xl mb-4 mt-6">3차 표현</h1>
                 <div className="text-sm ml-2 space-y-2">
 
                 </div>
             </div>
             <div className="mb-10">
                 <h1 className="font-bold text-xl mb-4 mt-6"></h1>
-                <div className="text-sm ml-2 space-y-2">
+                <div className="text-sm ml-2 space-y-2"     >
 
                 </div>
             </div>

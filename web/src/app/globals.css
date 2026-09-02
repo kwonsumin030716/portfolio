@@ -27,7 +27,7 @@ body {
 
 /* 2. 오직 일반 우측 위첨자/아래첨자(u^k, c_xk 등) 내부 글자만 축소 */
 .katex .msupsub .mord {
-  font-size: 14px !important;
+  font-size: 13px !important;
 }
 
 /* 3. 오직 시그마(∑) 위아래 범위(k=0, n) 내부 글자만 축소 */

@@ -98,9 +98,6 @@ export default function CurvePage(){
             ctx.fill();
         })
 
-        //분기 준비
-
-
         //선택한 곡선에 따라 분기
         if(curveType === 'catmull rom'){
             drawSlide(M_CATMULL_ROM, points, ctx);
@@ -109,7 +106,7 @@ export default function CurvePage(){
         } else if(curveType === 'bezier'){
             drawConnect(M_BEZIER, points, ctx);
         } else if(curveType === 'interpolation'){
-           drawConnect(M_INTERPOLATION, points, ctx);
+            drawConnect(M_INTERPOLATION, points, ctx);
         } else if(curveType === 'hermite'){
             drawHermit(points, ctx);
         }
@@ -242,8 +239,6 @@ export default function CurvePage(){
         }
         ctx.stroke();
 
-
-
         if(showLine && M === M_BEZIER){
             const color: string[] = [
                 "rgba(255, 65, 84, 0.85)",
@@ -282,8 +277,6 @@ export default function CurvePage(){
 
             ctx.restore();
         }
-
-
     }
 
     const drawHermit = (points: Point[], ctx: CanvasRenderingContext2D) => {

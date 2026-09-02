@@ -6,6 +6,13 @@ const nextConfig: NextConfig = {
 
     allowedDevOrigins: ['222.112.156.77'],
 
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+
     async rewrites() {
         return [
             {

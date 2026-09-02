@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="latex 배포 에러 수정4">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="latex 배포 에러 수정5">
+      <change beforePath="$PROJECT_DIR$/web/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +242,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/web" />
     </ignored-roots>
-    <MESSAGE value="외부 IP 활용" />
     <MESSAGE value="Github actions 활용" />
     <MESSAGE value="http proxy로 교체" />
     <MESSAGE value="vercel 접근 추가" />
@@ -267,7 +266,8 @@
     <MESSAGE value="latex 배포 에러 수정2" />
     <MESSAGE value="latex 배포 에러 수정3" />
     <MESSAGE value="latex 배포 에러 수정4" />
-    <option name="LAST_COMMIT_MESSAGE" value="latex 배포 에러 수정4" />
+    <MESSAGE value="latex 배포 에러 수정5" />
+    <option name="LAST_COMMIT_MESSAGE" value="latex 배포 에러 수정5" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,3 +1,4 @@
+//@ts-ignore
 import { InlineMath, BlockMath } from 'react-katex';
 
 export default function Interpolation() {

@@ -1,56 +1,54 @@
-//@ts-ignore
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { InlineMath, BlockMath } from 'react-katex';
 
-export default function Explanation(){
+export default function Concept(){
 
     const interpolation = ["0", "1/3", "2/3", "1"];
     const xy = ["x","y"];
 
     return (
         <div className="mt-10">
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-6">[1] 곡선의 표현 방식</h1>
-                <div className="mb-6 ml-2">
-                    <h2 className="font-bold text-lg mb-2">1. 암시적 표현 (Implicit Representation)</h2>
-                    <div className="ml-2 text-sm space-y-2">
-                        <p>대부분의 곡선은&nbsp;
-                            <InlineMath math="f(x,y)=0"/>
-                            와 같은 형태로 표현 가능
-                        </p>
-                        <div className="mt-4">예시</div>
-                        <p>직선: <InlineMath math="ax+bx+c=0"/></p>
-                        <p>원: <InlineMath math="x^2+y^2=r^2"/></p>
+            <Comp num="1" title="곡선의 표현 방식">
+                <div>
+                    <div className="mb-6 ml-2">
+                        <h2 className="font-bold text-lg mb-2">1. 암시적 표현 (Implicit Representation)</h2>
+                        <div className="ml-2 text-sm space-y-2">
+                            <p>대부분의 곡선은&nbsp;
+                                <InlineMath math="f(x,y)=0"/>
+                                와 같은 형태로 표현 가능
+                            </p>
+                            <div className="mt-4">예시</div>
+                            <p>직선: <InlineMath math="ax+bx+c=0"/></p>
+                            <p>원: <InlineMath math="x^2+y^2=r^2"/></p>
+                        </div>
+                    </div>
+                    <div className="mb-6 ml-2">
+                        <h2 className="font-bold text-lg mb-2">2. 매개변수 표현 (Parameteric Represenation)</h2>
+                        <div className="ml-2 text-sm space-y-2">
+                            <p>각 구성 요소
+                                <InlineMath math="(x,y)"/>
+                                의 값이 독립 변수
+                                &nbsp;<InlineMath math="u"/>&nbsp;
+                                (매개변수)에 따라 달라지는 표현 방식
+                            </p>
+                            <p className="mt-4">예시</p>
+                            <p><InlineMath math="x=x(u)"/></p>
+                            <p><InlineMath math="y=y(u)"/></p>
+                            <p className={`mt-4`}>벡터로 표현</p>
+                            <p><InlineMath math="p(u)=\begin{pmatrix}x(u)\\y(u)\end{pmatrix}"/></p>
+                            <p className="mt-6 mb-2 text-sm"><strong className="text-lg">- 미분 (Derivative) </strong><InlineMath math="\cfrac{dp(u)}{du}"/></p>
+                            <ul className="list-disc list-outside space-y-2 ml-6">
+                                <li><strong>방향 (Direction):</strong> 곡선의 접선(tangent) 방향</li>
+                                <li><strong>크기 (Magnitude):</strong> 매개변수 <InlineMath math="u"/>에 따른 곡선 변화의 속도(speed)</li>
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
-                <div className="mb-6 ml-2">
-                    <h2 className="font-bold text-lg mb-2">2. 매개변수 표현 (Parameteric Represenation)</h2>
-                    <div className="ml-2 text-sm space-y-2">
-                        <p>각 구성 요소
-                            <InlineMath math="(x,y)"/>
-                            의 값이 독립 변수
-                            &nbsp;<InlineMath math="u"/>&nbsp;
-                            (매개변수)에 따라 달라지는 표현 방식
-                        </p>
-                        <p className="mt-4">예시</p>
-                        <p><InlineMath math="x=x(u)"/></p>
-                        <p><InlineMath math="y=y(u)"/></p>
-                        <p className={`mt-4`}>벡터로 표현</p>
-                        <p><InlineMath math="p(u)=\begin{pmatrix}x(u)\\y(u)\end{pmatrix}"/></p>
-                        <p className="mt-6 mb-2 text-sm"><strong className="text-lg">- 미분 (Derivative) </strong><InlineMath math="\cfrac{dp(u)}{du}"/></p>
-                        <ul className="list-disc list-outside space-y-2 ml-6">
-                            <li><strong>방향 (Direction):</strong> 곡선의 접선(tangent) 방향</li>
-                            <li><strong>크기 (Magnitude):</strong> 매개변수 <InlineMath math="u"/>에 따른 곡선 변화의 속도(speed)</li>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6">[2] 표현 선택 기준</h1>
+            </Comp>
+            <Comp num="2" title="표현 선택 기준">
                 <div className="space-y-4 mb-6 ml-2 text-sm">
                     <ul className="list-disc list-outside space-y-2 mb-8 ml-4">
                         <li>
@@ -89,10 +87,8 @@ export default function Explanation(){
                         <InlineMath math={`x(u)=c_0+c_1u+c_2u^2+...+c_nu^n=\\sum\\limits_{k=0}^{n}u^kc_k`}/>
                     </p>
                 </div>
-            </div>
-
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6">[3] 매개변수 곡선의 행렬 방정식</h1>
+            </Comp>
+            <Comp num="3" title="매개변수 곡선의 행렬 방정식">
                 <div className="text-sm ml-2 space-y-2">
                     <p><InlineMath math={`x(u),y(u)`}/>에 대한 두 가지 방정식을 하나의 행렬 방정식으로 표현</p>
                     <p><InlineMath math={`p(u)
@@ -102,12 +98,9 @@ export default function Explanation(){
                     =\\sum\\limits_{k=0}^{n}u^kc_k`}/></p>
                     <p><InlineMath math={`c_k=\\begin{pmatrix}c_{xk}\\\\[0.4em]c_{yk}\\end{pmatrix}`}/>는 계수 벡터</p>
                 </div>
-            </div>
-
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6">[4] 다항식의 차수</h1>
+            </Comp>
+            <Comp num="4" title="다항식의 차수">
                 <div className="text-sm ml-2 space-y-2">
-                    <p></p>
                     <table className="max-w-lg border-collapse border border-gray-200 text-left text-sm bg-white shadow-sm rounded-lg overflow-hidden break-keep mb-6">
                         <thead className="bg-gray-50 border-b border-gray-200">
                         <tr className="divide-x divide-gray-200">
@@ -136,10 +129,8 @@ export default function Explanation(){
                     <p className="mb-4"><strong className="mr-3">3차 다항식 곡선 표현:</strong><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
                     <p><InlineMath math="c_k=\begin{pmatrix}c_{xk}\\c_{yk}\end{pmatrix}"/></p>
                 </div>
-            </div>
-
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6">[5] 다중 곡선 세그먼트</h1>
+            </Comp>
+            <Comp num="5" title="다중 곡선 세그먼트">
                 <div className="text-sm ml-2 space-y-2">
                     <p>두 끝점 사이에 곡선 세그먼트를 정의&nbsp;<InlineMath math="(0\leq u\leq 1)"/></p>
                     <ul className="list-disc list-outside space-y-2 mb-4 ml-4">
@@ -148,10 +139,8 @@ export default function Explanation(){
                     </ul>
                     <p>더 긴 곡선은 여러 개의 세그먼트로 구성되며 미분값의 연속성에 따라 부드러움이 결정</p>
                 </div>
-            </div>
-
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6">[6] 3차 표현</h1>
+            </Comp>
+            <Comp num="6" title="3차 표현">
                 <div className="text-sm ml-2 space-y-2">
                     <ul className="list-disc list-outside space-y-2 ml-6 mb-4">
                         <li><InlineMath math="x(u)=c_{x0}+c_{x1}u+c_{x2}u^2+c_{x3}u^3"/></li>
@@ -163,10 +152,8 @@ export default function Explanation(){
                     <p><InlineMath math="p(u)=\begin{pmatrix}x(u)\\y(u)\end{pmatrix}=\begin{bmatrix}1&u&u^2&u^3\end{bmatrix}\begin{bmatrix}c_{x0}&c_{y0}\\c_{x1}&c_{y1}\\c_{x2}&c_{y2}\\c_{x3}&c_{y3}\end{bmatrix}"/></p>
                     <p>하나의 점이 2개의 방정식과 8개의 미지수를 제공하므로, 최소 4개의 점이 주어진다면 미지수를 풀 수 있다.</p>
                 </div>
-            </div>
-
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6">[7] 기반 행렬 (Basis Matrix)</h1>
+            </Comp>
+            <Comp num="7" title="기반 행렬 (Basis Matrix)">
                 <div className="text-sm ml-2 space-y-2">
                     <p>4개의 제어점 <InlineMath math="p_0,\:p_1,\:p_2,\:p_3"/>가 주어졌다고 가정</p>
                     <p><InlineMath math="p=\begin{pmatrix}p_0\\p_1\\p_2\\p_3\end{pmatrix},
@@ -179,10 +166,8 @@ export default function Explanation(){
                     <p>원하는 곡선의 기반 행렬 <InlineMath math="M"/>과 주어진 4개의 점<InlineMath math="p"/>를 이용하면 계수 벡터<InlineMath math="\:c"/>를 구할 수 있다.</p>
                     <p><InlineMath math="c"/>를 알게 되면, <InlineMath math="\:x(u),\:y(u)"/>에 대한 방정식을 알 수 있다.</p>
                 </div>
-            </div>
-
-            <div className="mb-10">
-                <h1 className="font-bold text-xl mb-4 mt-6">[8] 블렌딩 함수 (Blending Functions)</h1>
+            </Comp>
+            <Comp num="8" title="블렌딩 함수 (Blending Funtions)">
                 <div className="text-sm ml-2 space-y-2">
                     <p><InlineMath math="p(u)=u^Tc=u^T(Mp)=(u^TM)p=b(u)^Tp"/></p>
                     <p><InlineMath math="b(u)^T=u^TM"/></p>
@@ -191,7 +176,19 @@ export default function Explanation(){
                     <p>이 함수를 <strong>블렌딩 함수</strong>라고 하며 개별 블렌딩 함수<InlineMath math="b_i(u)"/>는 해당 제어점 <InlineMath math="p_i"/>가 곡선에 미치는 가중치를 나타낸다.</p>
                     <p>블렌딩 함수를 이용하면 매번 계수 벡터<InlineMath math="\:c"/>를 구하지 않고 효율적으로 <InlineMath math="p(u)"/>를 구할 수 있다.</p>
                 </div>
-            </div>
+            </Comp>
         </div>
-    )
+    );
+}
+
+function Comp({num, title, children}: {num:string, title:string, children:React.ReactNode}){
+    return (
+        <div className="mb-10">
+            <div className="flex items-center gap-3 mb-6 mt-8">
+                <span className="flex items-center justify-center bg-blue-50 text-[#1F41B0] font-bold text-xl px-3.5 py-1 rounded-md border border-blue-100">{num}</span>
+                <h2 className="text-xl font-bold text-slate-800">{title}</h2>
+            </div>
+            {children}
+        </div>
+    );
 }

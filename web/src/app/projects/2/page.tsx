@@ -1,19 +1,19 @@
 'use client';
 
-
 import React, {useState, useRef, useEffect} from 'react';
 import Link from "next/link";
 import { projectData } from "@/data/projects";
 import BasePage from "@/components/BasePage";
-import Explanation from "./Explanation";
+import Concept from "./Concept";
+import CurveDescription from "./CurveDescription";
 
 interface Point {
     x: number;
     y: number;
 }
 
-const CURVE_TYPE = ['interpolation', 'hermite', 'bezier', 'bspline', 'catmull rom']  as const;
-type CurveType = (typeof CURVE_TYPE)[number];
+export const CURVE_TYPE = ['interpolation', 'hermite', 'bezier', 'bspline', 'catmull rom']  as const;
+export type CurveType = (typeof CURVE_TYPE)[number];
 
 const M_INTERPOLATION = [
     [   1,     0,     0,    0],
@@ -57,11 +57,29 @@ export default function CurvePage(){
     const [points, setPoints] = useState<Point[]>([]);
     const [dimensions, setDimensions] = useState({width: 600, height: 400});
     const [showLine, setShowLine] = useState<boolean>(true);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    const conceptRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const split = 100;
+
+    //자동 스크롤
+    useEffect(() => {
+        if (isOpen && conceptRef.current) {
+            setTimeout(() => {
+                const elementTop = conceptRef.current?.getBoundingClientRect().top + window.scrollY;
+
+                const offset = 150;
+
+                window.scrollTo({
+                    top: elementTop - offset,
+                    behavior: 'smooth',
+                });
+            }, 100);
+        }
+    }, [isOpen]);
 
     //크기 조절
     useEffect(() => {
@@ -421,7 +439,22 @@ export default function CurvePage(){
 
                         />
                     </div>
-                    <Explanation />
+                    <CurveDescription curveType={curveType}/>
+                    <div className="mt-16 mb-8 bg-slate-50 border border-slate-200 rounded-2xl p-5 shadow-sm hover:border-slate-300 transition-all">
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="flex justify-between items-center w-full text-left font-bold text-xl text-slate-800 cursor-pointer group"
+                        >
+                            <span className="ml-1 group-hover:text-[#1F41B0] transition-colors">기본 개념</span>
+                            <span className="text-base text-slate-400 group-hover:text-[#1F41B0] transition-colors">{isOpen ? '▲' : '▼'}</span>
+                        </button>
+                        {isOpen && (
+                            <div ref={conceptRef} className="animate-fade-in">
+                                <Concept />
+                            </div>
+                        )}
+                    </div>
+
                 </>
             )}
         />

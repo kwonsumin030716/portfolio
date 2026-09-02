@@ -1,6 +1,8 @@
 
 
 export default function Interpolation() {
+
+    const interpolation = ["0", "1/3", "2/3", "1"];
     return (
         <div>
             <div className="mb-10">

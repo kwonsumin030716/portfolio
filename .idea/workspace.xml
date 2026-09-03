@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="기본 개념 디자인">
+    <list default="true" id="7677327c-32f8-478e-acc0-b930e0a28ea8" name="변경" comment="explanation 기초">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/projects/2/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/projects/2/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/projects/2/CurveDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/projects/2/CurveDescription.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="curve_math" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,12 +38,12 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kwonsumin030716/portfolio.git",
-    "accountId": "75a1d327-3211-4c4c-b89e-74e1def5a93d"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kwonsumin030716/portfolio.git&quot;,
+    &quot;accountId&quot;: &quot;f0fb08fa-be98-4bbf-ae8c-287fedfa99b1&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -54,61 +53,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0040721318782857" />
-      <entry key="MS500" value="1.3326881134908826" />
-      <entry key="S2" value="1.84588525922045" />
-      <entry key="S5" value="2.2713518864052613" />
-      <entry key="S10" value="2.5592986719329325" />
-      <entry key="S30" value="2.831232188918876" />
-      <entry key="S60" value="2.913032912303986" />
-      <entry key="M2" value="3.0723191750144245" />
-      <entry key="M5" value="7.8719342068092235" />
-      <entry key="M10" value="25.734519551191298" />
-      <entry key="M15" value="47.87473329386665" />
-      <entry key="M30" value="116.60023558553259" />
-      <entry key="H1" value="229.5837614884209" />
-      <entry key="H2" value="419.7706376891369" />
-      <entry key="H4" value="774.3327528549313" />
-      <entry key="D1" value="2552.7747772296584" />
-      <entry key="W1" value="4063.8815659094994" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0000000000780562" />
+      <entry key="S30" value="1.0009501318444487" />
+      <entry key="S60" value="1.061641105971648" />
+      <entry key="M2" value="1.545925218322933" />
+      <entry key="M5" value="4.988290682735961" />
+      <entry key="M10" value="20.670066955041396" />
+      <entry key="M15" value="42.73641395106366" />
+      <entry key="M30" value="116.46035838767058" />
+      <entry key="H1" value="249.18269893404891" />
+      <entry key="H2" value="435.78415067591135" />
+      <entry key="H4" value="674.0215048076473" />
+      <entry key="D1" value="1880.021060164178" />
+      <entry key="W1" value="2930.4243444633735" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="1.7242369447924253E-148" />
-      <entry key="S10" value="1.3131020313716747E-74" />
-      <entry key="S30" value="2.359207595323504E-25" />
-      <entry key="S60" value="4.857179537023841E-13" />
-      <entry key="M2" value="6.98992184396797E-7" />
-      <entry key="M5" value="0.004353771401635023" />
-      <entry key="M10" value="0.14508751307060705" />
-      <entry key="M15" value="0.5711843886160587" />
-      <entry key="M30" value="2.5690778366120397" />
-      <entry key="H1" value="6.434559007170427" />
-      <entry key="H2" value="15.337915109039956" />
-      <entry key="H4" value="39.34358857659124" />
-      <entry key="D1" value="199.33827354692139" />
-      <entry key="W1" value="337.0480387462726" />
+      <entry key="S2" value="9.37088449949855E-103" />
+      <entry key="S5" value="2.0176989361445903E-41" />
+      <entry key="S10" value="6.17141552966894E-21" />
+      <entry key="S30" value="3.1845797816441977E-7" />
+      <entry key="S60" value="9.320167549429892E-4" />
+      <entry key="M2" value="0.0525174488324699" />
+      <entry key="M5" value="0.7351421225412013" />
+      <entry key="M10" value="2.5500914772990986" />
+      <entry key="M15" value="4.717160237503079" />
+      <entry key="M30" value="12.76997408153979" />
+      <entry key="H1" value="28.518312478958393" />
+      <entry key="H2" value="49.89682166540988" />
+      <entry key="H4" value="76.17778261593334" />
+      <entry key="D1" value="199.99343569132046" />
+      <entry key="W1" value="296.10765728312276" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.6624220027629206" />
-      <entry key="MS500" value="1.225898973190772" />
-      <entry key="S2" value="1.8075810820890317" />
-      <entry key="S5" value="2.2523112676531336" />
-      <entry key="S10" value="2.548527021837199" />
-      <entry key="S30" value="2.827248137995591" />
-      <entry key="S60" value="2.910980960424914" />
-      <entry key="M2" value="3.071028370900469" />
-      <entry key="M5" value="7.8704959311152605" />
-      <entry key="M10" value="25.867341302918746" />
-      <entry key="M15" value="48.43115155974508" />
-      <entry key="M30" value="119.1537672216417" />
-      <entry key="H1" value="236.00520524578423" />
-      <entry key="H2" value="435.096471254387" />
-      <entry key="H4" value="813.6615617638728" />
-      <entry key="D1" value="2752.0994066397175" />
-      <entry key="W1" value="4400.926081658716" />
+      <entry key="MS100" value="1.8662347444304676E-26" />
+      <entry key="MS500" value="7.148143362979316E-6" />
+      <entry key="S2" value="0.051706877660955275" />
+      <entry key="S5" value="0.3057872163098346" />
+      <entry key="S10" value="0.5529803038047206" />
+      <entry key="S30" value="0.8217477671589036" />
+      <entry key="S60" value="0.968483573232727" />
+      <entry key="M2" value="1.5492114642582067" />
+      <entry key="M5" value="5.695664298306996" />
+      <entry key="M10" value="23.186942555624647" />
+      <entry key="M15" value="47.412549423199806" />
+      <entry key="M30" value="129.17755134304954" />
+      <entry key="H1" value="277.6464946736432" />
+      <entry key="H2" value="485.634733457982" />
+      <entry key="H4" value="750.1644105441693" />
+      <entry key="D1" value="2079.999541744649" />
+      <entry key="W1" value="3226.528699931425" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -123,45 +122,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.asset [clean].executor": "Run",
-    "Maven.asset [compile].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.AssetApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "js.debugger.nextJs.config.created.client": "true",
-    "js.debugger.nextJs.config.created.server": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/portfolio",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.Next.js: 서버 측.executor": "Run",
-    "project.structure.last.edited": "모듈",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.asset [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.asset [compile].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AssetApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/portfolio&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.Next.js: 서버 측.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\portfolio" />
@@ -244,6 +243,11 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/web" />
     </ignored-roots>
+    <MESSAGE value="portfolio 폴더 초기 업로드" />
+    <MESSAGE value="백엔드 CORS 설정 추가" />
+    <MESSAGE value="외부 IP 활용" />
+    <MESSAGE value="Github actions 활용" />
+    <MESSAGE value="http proxy로 교체" />
     <MESSAGE value="vercel 접근 추가" />
     <MESSAGE value="환경 변수 및 리소스 추가" />
     <MESSAGE value="프록시 주소 수정" />
@@ -261,15 +265,8 @@
     <MESSAGE value="Hermit Curve" />
     <MESSAGE value="Bezier Curve" />
     <MESSAGE value="수치해석 시각화 반영" />
-    <MESSAGE value="Explanation 기초틀 완성" />
-    <MESSAGE value="latex 배포 에러 수정1" />
-    <MESSAGE value="latex 배포 에러 수정2" />
-    <MESSAGE value="latex 배포 에러 수정3" />
-    <MESSAGE value="latex 배포 에러 수정4" />
-    <MESSAGE value="latex 배포 에러 수정5" />
-    <MESSAGE value="latex 배포 에러 수정6" />
-    <MESSAGE value="기본 개념 디자인" />
-    <option name="LAST_COMMIT_MESSAGE" value="기본 개념 디자인" />
+    <MESSAGE value="explanation 기초" />
+    <option name="LAST_COMMIT_MESSAGE" value="explanation 기초" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -173,5 +173,115 @@ export default function CurveDescription({curveType}: curveType) {
                 </div>
             </div>
         )
+    }else if(curveType === 'bspline'){
+        return (
+            <div>
+                <div className="mb-6">
+                    <h1 className="font-bold text-xl mb-4 mt-6">B-Spline 곡선</h1>
+                    <div className="text-sm ml-2 space-y-4">
+                        <p>4개의 제어점을 사용하여 중간 2개의 점 사이를 보간한다.</p>
+                        <p>
+                            주어진 4개의 점 <InlineMath math="{p_{i-2},p_{i-1},p_i,p_{i+1}}"/>을 사용하여
+                            <InlineMath math="p_{i-1},p_i"/> 사이의 곡선을 만든다.
+                        </p>
+                        <p>
+                            인접한 세그먼트를 생성할 때 하나의 제어점 <InlineMath math="p_{i+2}"/>를 추가하고
+                            <InlineMath math="{p_{i-1},p_i,p_{i+1},p_{i+2}}"/>점들을 사용하여
+                            <InlineMath math="p_i,p_{i+1}"/>사이의 세그먼트를 만든다.
+                        </p>
+                        <p>
+                            5개의 제어점 <InlineMath math="{p_{i-2},p_{i-1},p_i,p_{i+1},p_{i+2}}"/>가 주어질 때,
+                        </p>
+                        <p>
+                            앞 세그먼트를 <InlineMath math="q(u)"/>, 다음 세그먼트를 <InlineMath math="p(u)"/>로 하고 다음 조건을 따른다.
+                        </p>
+                        <p><strong>[ 위치 연속성 ]</strong></p>
+                        <ul>
+                            <li>
+                                <strong>대칭성: </strong>중심이 되는 점 <InlineMath math="p_i"/>의 영향력이 가장 커야하고,
+                                양 옆의 <InlineMath math="p_{i-1},p_{i+1}"/>은 대칭으로 같은 영향력을 가져야 한다.
+                            </li>
+                            <li>
+                                <strong>단위 분할성: </strong>세 가중치의 합은 반드시 1이어야 한다.
+                            </li>
+                        </ul>
+                        <p>* 여기선 1:4:1 비율로 분할한다.</p>
+                        <p>
+                            <InlineMath math="q(1)=p(0)=\cfrac{1}{6}\:p_{i-1}+\cfrac{4}{6}\:\:p_i+\cfrac{1}{6}\:p_{i+1}"/>
+                        </p>
+                        <p><strong>[ 접선 연속성 ]</strong></p>
+
+
+
+
+
+
+                        <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
+                        <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
+                        <div>
+                            <p className="mt-6 mb-2"><strong>미분 추정:</strong></p>
+                            <p><InlineMath math="p'(0)=3(p_1-p_0)=c_1"/></p>
+                            <p><InlineMath math="p'(1)=3(p_3-p_2)=c_1+2c_2+3c_3"/></p>
+                        </div>
+                        <div className="flex justify-start items-start gap-20 mt-4 bg-gray-50 p-4 rounded-lg">
+                            <div className="space-y-2">
+                                <p><strong>[ <InlineMath math="p_1"/> 유도 ]</strong></p>
+                                <p><InlineMath math="3(p_1-c_0)=c_1"/></p>
+                                <p><InlineMath math="p_1-c_0=\cfrac{1}{3}\:c_1"/></p>
+                                <p><InlineMath math="p_1=c_0+\cfrac{1}{3}\:c_1"/></p>
+                            </div>
+                            <div className="space-y-2">
+                                <p><strong>[ <InlineMath math="p_2"/> 유도 ]</strong></p>
+                                <p><InlineMath math="3(c_0+c_1+c_2+c_3-p_2)=c_1+2c_2+3c_3"/></p>
+                                <p><InlineMath math="c_0+c_1+c_2+c_3-p_2=\cfrac{1}{3}\:c_1+\cfrac{2}{3}\:c_2+c_3"/></p>
+                                <p><InlineMath math="p_2=c_0+\cfrac{2}{3}\:c_1+\cfrac{1}{3}\:c_2"/></p>
+                            </div>
+                        </div>
+
+                        <p><InlineMath math="p=\begin{pmatrix}p_0\\p_1\\p_2\\p_3\end{pmatrix}
+                        =\begin{pmatrix}
+                        c_0\\[0.8ex]
+                        c_0+\cfrac{1}{3}\:c_1\\[0.8ex]
+                        c_0+\cfrac{2}{3}\:c_1+\cfrac{1}{3}\:c_2\\[0.8ex]
+                        c_0+c_1+c_2+c_3
+                        \end{pmatrix}
+                        =\begin{bmatrix}1&0&0&0\\1&1/3&0&0\\1&2/3&1/3&0\\1&1&1&1\end{bmatrix}
+                        \begin{bmatrix}c_0\\c_1\\c_2\\c_3\end{bmatrix}
+                        =Ac
+                        "/></p>
+                        <p><InlineMath math="M_B=A^{-1}=\begin{bmatrix}
+                        1&0&0&0\\
+                        -3&3&0&0\\
+                        3&-6&3&0\\
+                        -1&3&-3&1
+                        \end{bmatrix}"/></p>
+                        <p><InlineMath math="b(u)=M_B^Tu
+                        =\begin{bmatrix}
+                        1&-3&3&-1\\
+                        0&3&-6&3\\
+                        0&0&3&-3\\
+                        0&0&0&1
+                        \end{bmatrix}
+                        \begin{bmatrix}1\\u\\u^2\\u^3\end{bmatrix}
+                        =\begin{pmatrix}
+                        1-3u+3u^2-1u^3\\[0.5ex]
+                        3u+-6u^2+3u^3\\[0.5ex]
+                        3u^2-3u^3\\[0.5ex]
+                        u^3
+                        \end{pmatrix}
+                        =\begin{pmatrix}
+                        (1-u)^3\\[0.5ex]
+                        3u(1-u)^2\\[0.5ex]
+                        3u^2(1-u)\\[0.5ex]
+                        u^3
+                        \end{pmatrix}
+                        =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}"/></p>
+                        <p><InlineMath math="
+                        p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
+                        "/></p>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }

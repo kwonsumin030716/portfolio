@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "자료구조 빌드 및 실행 (run.bat)",
+            "command": ".\\run.bat",
+            "options": {
+                "cwd": "${workspaceFolder}/dataStructure"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "focus": true,
+                "panel": "shared"
+            }
+        }
+    ]
+}

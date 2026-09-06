@@ -210,6 +210,13 @@ export default function CurveDescription({curveType}: curveType) {
                             <InlineMath math="q(1)=p(0)=\cfrac{1}{6}\:p_{i-1}+\cfrac{4}{6}\:\:p_i+\cfrac{1}{6}\:p_{i+1}"/>
                         </p>
                         <p><strong>[ 접선 연속성 ]</strong></p>
+                        <p><InlineMath math="p_i"/>에서의 접선 벡터는
+                            이전 제어점<InlineMath math="p_{i-1}"/>과
+                            다음 제어점<InlineMath math="p_{i+1}"/>의 방향 벡터의 반으로 한다.</p>
+                        <p><InlineMath math="q'(1)=p'(0)=\cfrac{1}{2}\:(p_{i+1}-p_{i-1})"/></p>
+
+                        <p>두 조건을 이용해 4개의 식을 얻을 수 있다.</p>
+
 
 
 

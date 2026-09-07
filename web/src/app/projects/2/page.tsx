@@ -1,19 +1,20 @@
 'use client';
 
 import React, {useState, useRef, useEffect} from 'react';
-import Link from "next/link";
 import { projectData } from "@/data/projects";
 import BasePage from "@/components/BasePage";
 import Concept from "./Concept";
 import CurveDescription from "./CurveDescription";
+import {CURVE_TYPE} from "./constants";
+import {CurveType} from "./constants";
 
 interface Point {
     x: number;
     y: number;
 }
 
-export const CURVE_TYPE = ['interpolation', 'hermite', 'bezier', 'bspline', 'catmull rom']  as const;
-export type CurveType = (typeof CURVE_TYPE)[number];
+
+
 
 const M_INTERPOLATION = [
     [   1,     0,     0,    0],
@@ -77,7 +78,7 @@ export default function CurvePage(){
             e.preventDefault();
 
             // 마우스 휠 양만큼 가로로 스크롤 이동
-            container.scrollLeft += e.deltaY;
+            container.scrollLeft += Math.round(e.deltaY);
         };
         // 3. ★ 핵심: { passive: false } 옵션을 주어 휠 이벤트의 락을 강제로 해제하고 등록합니다.
         container.addEventListener('wheel', handleWheel, { passive: false });
@@ -92,14 +93,15 @@ export default function CurvePage(){
     useEffect(() => {
         if (isOpen && conceptRef.current) {
             setTimeout(() => {
-                const elementTop = conceptRef.current?.getBoundingClientRect().top + window.scrollY;
+                if(conceptRef.current){
+                    const elementTop = conceptRef.current?.getBoundingClientRect().top + window.scrollY;
+                    const offset = 150;
 
-                const offset = 150;
-
-                window.scrollTo({
-                    top: elementTop - offset,
-                    behavior: 'smooth',
-                });
+                    window.scrollTo({
+                        top: elementTop - offset,
+                        behavior: 'smooth',
+                    });
+                }
             }, 100);
         }
     }, [isOpen]);
@@ -109,7 +111,7 @@ export default function CurvePage(){
         if(!containerRef) return;
 
         const resizeObserver = new ResizeObserver((entries) => {
-            for(let entry of entries){
+            for(const entry of entries){
                 const {width} = entry.contentRect;
                 setDimensions({
                     width: width,
@@ -120,41 +122,6 @@ export default function CurvePage(){
 
         resizeObserver.observe(containerRef.current!);
     }, []);
-
-    //그리기
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if(!canvas) return;
-        const ctx = canvas.getContext('2d');
-        if(!ctx) return;
-
-        //화면 초기화
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        //제어점 그리기
-        points.forEach((pt) => {
-            ctx.beginPath();
-            ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2);
-            ctx.fillStyle = '#1F41B0';
-            ctx.fill();
-        })
-
-        //선택한 곡선에 따라 분기
-        if(curveType === 'catmull rom'){
-            drawSlide(M_CATMULL_ROM, points, ctx);
-        } else if(curveType === 'bspline'){
-            drawSlide(M_B_SPLINE, points, ctx);
-        } else if(curveType === 'bezier'){
-            drawConnect(M_BEZIER, points, ctx);
-        } else if(curveType === 'interpolation'){
-            drawConnect(M_INTERPOLATION, points, ctx);
-        } else if(curveType === 'hermite'){
-            drawHermit(points, ctx);
-        }
-
-
-
-    }, [dimensions, points, showLine, curveType]);
 
     const drawSlide = (M: number[][], points:Point[], ctx: CanvasRenderingContext2D) => {
         if(points.length >= 4){
@@ -402,10 +369,41 @@ export default function CurvePage(){
         return {x: px, y: py};
     }
 
+    //그리기
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if(!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if(!ctx) return;
+
+        //화면 초기화
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        //제어점 그리기
+        points.forEach((pt) => {
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#1F41B0';
+            ctx.fill();
+        })
+
+        //선택한 곡선에 따라 분기
+        if(curveType === 'catmull rom'){
+            drawSlide(M_CATMULL_ROM, points, ctx);
+        } else if(curveType === 'bspline'){
+            drawSlide(M_B_SPLINE, points, ctx);
+        } else if(curveType === 'bezier'){
+            drawConnect(M_BEZIER, points, ctx);
+        } else if(curveType === 'interpolation'){
+            drawConnect(M_INTERPOLATION, points, ctx);
+        } else if(curveType === 'hermite'){
+            drawHermit(points, ctx);
+        }
+    }, [dimensions, points, showLine, curveType]);
+
     return (
         <BasePage
             projectData={data!}
-
             button={
                 <button
                     onClick={() => {
@@ -415,73 +413,71 @@ export default function CurvePage(){
                 >
                     Reset
                 </button>
-            }
+            }>
 
-            children={(
-                <>
-                    <div className="flex items-center gap-2 mb-6">
-                        <input
-                            type="checkbox"
-                            id="show-points"
-                            checked={showLine}
-                            onChange={(e) => setShowLine(e.target.checked)}
-                            className="w-4 h-4 text-[#1F41B0] border-slate-300 rounded focus:ring-[#1F41B0] cursor-pointer"
-                        />
-                        <label
-                            htmlFor="show-line"
-                            className="text-sm font-medium text-slate-600 cursor-pointer select-none"
-                        >
-                            보조선 표시하기
-                        </label>
-                    </div>
+            <>
+                <div className="flex items-center gap-2 mb-6">
+                    <input
+                        type="checkbox"
+                        id="show-points"
+                        checked={showLine}
+                        onChange={(e) => setShowLine(e.target.checked)}
+                        className="w-4 h-4 text-[#1F41B0] border-slate-300 rounded focus:ring-[#1F41B0] cursor-pointer"
+                    />
+                    <label
+                        htmlFor="show-line"
+                        className="text-sm font-medium text-slate-600 cursor-pointer select-none"
+                    >
+                        보조선 표시하기
+                    </label>
+                </div>
 
-                    <div
-                        ref={scrollContainerRef}
-                        className="flex border-b border-slate-200 mb-6 whitespace-nowrap overflow-x-auto overflow-y-hidden overscroll-x-contain">
-                        {CURVE_TYPE.map((type, index) => (
-                            <button
-                                key={index}
-                                onClick={() =>
-                                    setCurveType(type)
-                                }
-                                className={`px-4 py-2 font-medium text-base transition-all -mb-px cursor-pointer ${
-                                    type === curveType
-                                        ? "border-b-2 border-[#1F41B0] text-[#1F41B0] font-semibold"
-                                        : "border-b-2 border-transparent text-slate-500 hover:text-slate-800"
-                                }`}
-                            >
-                                {type}
-                            </button>
-                        ))}
-                    </div>
-                    <div ref={containerRef} className="w-full h-[400px] border">
-                        <canvas
-                            ref = {canvasRef}
-                            width={dimensions.width}
-                            height={dimensions.height}
-                            onClick={handleCanvasClick}
-                            className="w-full h-[400px] mb-6 whitespace-nowrap"
-
-                        />
-                    </div>
-                    <CurveDescription curveType={curveType}/>
-                    <div className="mt-16 mb-8 bg-slate-50 border border-slate-200 rounded-2xl p-5 shadow-sm hover:border-slate-300 transition-all">
+                <div
+                    ref={scrollContainerRef}
+                    className="flex border-b border-slate-200 mb-6 whitespace-nowrap overflow-x-auto overflow-y-hidden overscroll-x-contain">
+                    {CURVE_TYPE.map((type, index) => (
                         <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="flex justify-between items-center w-full text-left font-bold text-xl text-slate-800 cursor-pointer group"
+                            key={index}
+                            onClick={() =>
+                                setCurveType(type)
+                            }
+                            className={`px-4 py-2 font-medium text-base transition-all -mb-px cursor-pointer ${
+                                type === curveType
+                                    ? "border-b-2 border-[#1F41B0] text-[#1F41B0] font-semibold"
+                                    : "border-b-2 border-transparent text-slate-500 hover:text-slate-800"
+                            }`}
                         >
-                            <span className="ml-1 group-hover:text-[#1F41B0] transition-colors">기본 개념</span>
-                            <span className="text-base text-slate-400 group-hover:text-[#1F41B0] transition-colors">{isOpen ? '▲' : '▼'}</span>
+                            {type}
                         </button>
-                        {isOpen && (
-                            <div ref={conceptRef} className="animate-fade-in">
-                                <Concept />
-                            </div>
-                        )}
-                    </div>
+                    ))}
+                </div>
+                <div ref={containerRef} className="w-full h-100 border">
+                    <canvas
+                        ref = {canvasRef}
+                        width={dimensions.width}
+                        height={dimensions.height}
+                        onClick={handleCanvasClick}
+                        className="w-full h-100 mb-6 whitespace-nowrap"
 
-                </>
-            )}
-        />
+                    />
+                </div>
+                <CurveDescription curveType={curveType}/>
+                <div className="mt-16 mb-8 bg-slate-50 border border-slate-200 rounded-2xl p-5 shadow-sm hover:border-slate-300 transition-all">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="flex justify-between items-center w-full text-left font-bold text-xl text-slate-800 cursor-pointer group"
+                    >
+                        <span className="ml-1 group-hover:text-[#1F41B0] transition-colors">기본 개념</span>
+                        <span className="text-base text-slate-400 group-hover:text-[#1F41B0] transition-colors">{isOpen ? '▲' : '▼'}</span>
+                    </button>
+                    {isOpen && (
+                        <div ref={conceptRef} className="animate-fade-in">
+                            <Concept />
+                        </div>
+                    )}
+                </div>
+
+            </>
+        </BasePage>
     );
 }

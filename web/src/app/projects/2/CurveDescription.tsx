@@ -1,7 +1,7 @@
 import { InlineMath, BlockMath } from 'react-katex';
-import type {curveType} from './page';
+import type {CurveType} from './constants';
 
-export default function CurveDescription({curveType}: curveType) {
+export default function CurveDescription({curveType}: {curveType: CurveType}) {
 
     const interpolation = ["0", "1/3", "2/3", "1"];
 
@@ -195,28 +195,35 @@ export default function CurveDescription({curveType}: curveType) {
                         <p>
                             앞 세그먼트를 <InlineMath math="q(u)"/>, 다음 세그먼트를 <InlineMath math="p(u)"/>로 하고 다음 조건을 따른다.
                         </p>
-                        <p><strong>[ 위치 연속성 ]</strong></p>
-                        <ul>
-                            <li>
-                                <strong>대칭성: </strong>중심이 되는 점 <InlineMath math="p_i"/>의 영향력이 가장 커야하고,
-                                양 옆의 <InlineMath math="p_{i-1},p_{i+1}"/>은 대칭으로 같은 영향력을 가져야 한다.
-                            </li>
-                            <li>
-                                <strong>단위 분할성: </strong>세 가중치의 합은 반드시 1이어야 한다.
-                            </li>
+
+                        <div className="justify-start items-start gap-20 mt-4 bg-gray-50 p-4 rounded-lg">
+                            <p><strong>[ 위치 연속성 ]</strong></p>
+                            <ul>
+                                <li>
+                                    <strong>대칭성: </strong>중심이 되는 점 <InlineMath math="p_i"/>의 영향력이 가장 커야하고,
+                                    양 옆의 <InlineMath math="p_{i-1},p_{i+1}"/>은 대칭으로 같은 영향력을 가져야 한다.
+                                </li>
+                                <li>
+                                    <strong>단위 분할성: </strong>세 가중치의 합은 반드시 1이어야 한다.
+                                </li>
+                            </ul>
+                            <p>* 여기선 1:4:1 비율로 분할한다.</p>
+                            <p>
+                                <InlineMath math="q(1)=p(0)=\cfrac{1}{6}\:p_{i-1}+\cfrac{4}{6}\:\:p_i+\cfrac{1}{6}\:p_{i+1}"/>
+                            </p>
+                            <p><strong>[ 접선 연속성 ]</strong></p>
+                            <p><InlineMath math="p_i"/>에서의 접선 벡터는
+                                이전 제어점<InlineMath math="p_{i-1}"/>과
+                                다음 제어점<InlineMath math="p_{i+1}"/>의 방향 벡터의 반으로 한다.</p>
+                            <p><InlineMath math="q'(1)=p'(0)=\cfrac{1}{2}\:(p_{i+1}-p_{i-1})"/></p>
+                        </div>
+                        <p>두 조건에 의해 4개의 제어점 <InlineMath math="{p_0,p_1,p_2,p_3}"/>에 대해  4개의 방정식을 얻게 된다.</p>
+
+                        <ul className="list-disc list-outside space-y-2 mb-8 ml-4">
+                            <li><InlineMath math="p(0)=c_0=\cfrac{1}{6}\:(p_0+4p_1+p_2)"/></li>
+                            <li><InlineMath math=""/></li>
+
                         </ul>
-                        <p>* 여기선 1:4:1 비율로 분할한다.</p>
-                        <p>
-                            <InlineMath math="q(1)=p(0)=\cfrac{1}{6}\:p_{i-1}+\cfrac{4}{6}\:\:p_i+\cfrac{1}{6}\:p_{i+1}"/>
-                        </p>
-                        <p><strong>[ 접선 연속성 ]</strong></p>
-                        <p><InlineMath math="p_i"/>에서의 접선 벡터는
-                            이전 제어점<InlineMath math="p_{i-1}"/>과
-                            다음 제어점<InlineMath math="p_{i+1}"/>의 방향 벡터의 반으로 한다.</p>
-                        <p><InlineMath math="q'(1)=p'(0)=\cfrac{1}{2}\:(p_{i+1}-p_{i-1})"/></p>
-
-                        <p>두 조건을 이용해 4개의 식을 얻을 수 있다.</p>
-
 
 
 
@@ -225,6 +232,8 @@ export default function CurveDescription({curveType}: curveType) {
 
                         <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
                         <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
+
+
                         <div>
                             <p className="mt-6 mb-2"><strong>미분 추정:</strong></p>
                             <p><InlineMath math="p'(0)=3(p_1-p_0)=c_1"/></p>

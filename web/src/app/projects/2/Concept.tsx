@@ -10,7 +10,7 @@ export default function Concept(){
 
     return (
         <div className="mt-10">
-            <Comp num="1" title="곡선의 표현 방식">
+            <Comp num="1" title="곡선의 표현 방식 (Representation of Curve)">
                 <div>
                     <div className="mb-6 ml-2">
                         <h2 className="font-bold text-lg mb-2">1. 암시적 표현 (Implicit Representation)</h2>
@@ -48,7 +48,7 @@ export default function Concept(){
                     </div>
                 </div>
             </Comp>
-            <Comp num="2" title="표현 선택 기준">
+            <Comp num="2" title="표현 선택 기준 (Criteria for Choosing a Representation)">
                 <div className="space-y-4 mb-6 ml-2 text-sm">
                     <ul className="list-disc list-outside space-y-2 mb-8 ml-4">
                         <li>
@@ -88,7 +88,7 @@ export default function Concept(){
                     </p>
                 </div>
             </Comp>
-            <Comp num="3" title="매개변수 곡선의 행렬 방정식">
+            <Comp num="3" title="매개변수 곡선의 행렬 방정식 (Matrix Equation for Parametric Curve)">
                 <div className="text-sm ml-2 space-y-2">
                     <p><InlineMath math={`x(u),y(u)`}/>에 대한 두 가지 방정식을 하나의 행렬 방정식으로 표현</p>
                     <p><InlineMath math={`p(u)
@@ -99,7 +99,7 @@ export default function Concept(){
                     <p><InlineMath math={`c_k=\\begin{pmatrix}c_{xk}\\\\[0.4em]c_{yk}\\end{pmatrix}`}/>는 계수 벡터</p>
                 </div>
             </Comp>
-            <Comp num="4" title="다항식의 차수">
+            <Comp num="4" title="다항식의 차수 (Degree of the Polynomial)">
                 <div className="text-sm ml-2 space-y-2">
                     <table className="max-w-lg border-collapse border border-gray-200 text-left text-sm bg-white shadow-sm rounded-lg overflow-hidden break-keep mb-6">
                         <thead className="bg-gray-50 border-b border-gray-200">
@@ -130,7 +130,7 @@ export default function Concept(){
                     <p><InlineMath math="c_k=\begin{pmatrix}c_{xk}\\c_{yk}\end{pmatrix}"/></p>
                 </div>
             </Comp>
-            <Comp num="5" title="다중 곡선 세그먼트">
+            <Comp num="5" title="다중 곡선 세그먼트 (Multiple Curve Segments)">
                 <div className="text-sm ml-2 space-y-2">
                     <p>두 끝점 사이에 곡선 세그먼트를 정의&nbsp;<InlineMath math="(0\leq u\leq 1)"/></p>
                     <ul className="list-disc list-outside space-y-2 mb-4 ml-4">
@@ -140,7 +140,7 @@ export default function Concept(){
                     <p>더 긴 곡선은 여러 개의 세그먼트로 구성되며 미분값의 연속성에 따라 부드러움이 결정</p>
                 </div>
             </Comp>
-            <Comp num="6" title="3차 표현">
+            <Comp num="6" title="3차 표현 (Cubic Representation)">
                 <div className="text-sm ml-2 space-y-2">
                     <ul className="list-disc list-outside space-y-2 ml-6 mb-4">
                         <li><InlineMath math="x(u)=c_{x0}+c_{x1}u+c_{x2}u^2+c_{x3}u^3"/></li>

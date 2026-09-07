@@ -11,36 +11,69 @@ export default function CurveDescription({curveType}: {curveType: CurveType}) {
                 <h1 className="font-bold text-xl mb-4 mt-6">보간법&nbsp;(Interpolation)</h1>
                 <div className="text-sm ml-2 space-y-4">
                     <p>제어점<InlineMath math="p_1,\:p_2"/>를 <InlineMath math="p_0,\:p_3"/>의 보간점으로 간주하고 균등하게 나눈다.<InlineMath math="\:\:(0,\:1/3,\:2/3,\:1)"/></p>
-                    <p><InlineMath math="p=\begin{pmatrix}p_0\\p_1\\p_2\\p_3\end{pmatrix}
-                    =\begin{pmatrix}p(0)\\p(1/3)\\p(2/3)\\p(1)\end{pmatrix}
-                    =\begin{pmatrix}
-                    c_0\\[1ex]
-                    c_0+{\scriptscriptstyle\frac{1}{3}}c_1 + \left({\scriptscriptstyle\frac{1}{3}}\right)^2 c_2 + \left({\scriptscriptstyle\frac{1}{3}}\right)^3 c_3\\[1ex]
-                    c_0 + {\scriptscriptstyle\frac{2}{3}}c_1 + \left({\scriptscriptstyle\frac{2}{3}}\right)^2 c_2 + \left({\scriptscriptstyle\frac{2}{3}}\right)^3 c_3\\[1ex]
-                    c_0+c_1+c_2+c_3
-                    \end{pmatrix}
-                    =\begin{bmatrix}1&0&0&0\\1&1/3&1/9&1/27\\1&2/3&4/9&8/27\\1&1&1&1\end{bmatrix}
-                    \begin{bmatrix}c_0\\c_1\\c_2\\c_3\end{bmatrix}
-                    =Ac
-                    "/></p>
-                    <p><InlineMath math="M_I=A^{-1}=\begin{bmatrix}1&0&0&0\\-5.5&9&-4.5&1\\9&-22.5&18&-4.5\\-4.5&13.5&-13.5&4.5\end{bmatrix}"/></p>
-                    <p><InlineMath math="b(u)=M_I^Tu
-                    =\begin{bmatrix}
-                    1&-5.5&9&-4.5\\
-                    0&9&-22.5&13.5\\
-                    0&-4.5&18&-13.5\\
-                    0&1&-4.5&4.5
-                    \end{bmatrix}
-                    \begin{bmatrix}1\\u\\u^2\\u^3\end{bmatrix}
-                    =\begin{pmatrix}
-                    1-5.5u+9u^2-4.5u^3\\[0.5ex]
-                    9u-22.5u^2+13.5u^3\\[0.5ex]
-                    -4.5u+18u^2-13.5u^3\\[0.5ex]
-                    u-4.5u^2+4.5u^3
-                    \end{pmatrix}
-                    =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}"/></p>
+                    <p>곡선 <InlineMath math="p"/>를 u에 대해 3차 방정식으로 표현하면</p>
+                    <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
+                    <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
+
                     <p><InlineMath math="
-                    p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
+                        \begin{pmatrix}p(0)\\p(1/3)\\p(2/3)\\p(1)\end{pmatrix}
+                        =\begin{pmatrix}
+                        c_0\\[1ex]
+                        c_0+{\scriptscriptstyle\frac{1}{3}}c_1 + \left({\scriptscriptstyle\frac{1}{3}}\right)^2 c_2 + \left({\scriptscriptstyle\frac{1}{3}}\right)^3 c_3\\[1ex]
+                        c_0 + {\scriptscriptstyle\frac{2}{3}}c_1 + \left({\scriptscriptstyle\frac{2}{3}}\right)^2 c_2 + \left({\scriptscriptstyle\frac{2}{3}}\right)^3 c_3\\[1ex]
+                        c_0+c_1+c_2+c_3
+                        \end{pmatrix}
+                        =\begin{bmatrix}1&0&0&0\\1&1/3&1/9&1/27\\1&2/3&4/9&8/27\\1&1&1&1\end{bmatrix}
+                        c
+                    "/></p>
+
+                    <div className="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-base mb-2">[ 곡선 규칙 정의 ]</p>
+                        <ul className="text-sm ml-2 space-y-2">
+                            <p><InlineMath math="p(0)=p_0"/></p>
+                            <p><InlineMath math="p(1/3)=p_1"/></p>
+                            <p><InlineMath math="p(2/3)=p_2"/></p>
+                            <p><InlineMath math="p(1)=p_3"/></p>
+                        </ul>
+                    </div>
+
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1/3)\\p(2/3)\\p(1)\end{pmatrix}
+                        =\begin{pmatrix}p_0\\p_1\\p_2\\p_3\end{pmatrix}=p
+                    "/></p>
+
+                    <p><InlineMath math="
+                        c=\begin{bmatrix}1&0&0&0\\1&1/3&1/9&1/27\\1&2/3&4/9&8/27\\1&1&1&1\end{bmatrix}^{-1}p
+                        =M_I\:p
+                    "/></p>
+                    <p><InlineMath math="
+                        M_I = \cfrac{1}{2}\begin{bmatrix}
+                        2 &   0 &   0 &  0 \\
+                        -11 &  18 &  -9 &  2 \\
+                        18 & -45 &  36 & -9 \\
+                        -9 &  27 & -27 &  9
+                        \end{bmatrix}
+                    "/></p>
+                    <p><InlineMath math="
+                        b(u) = M_I^T u
+                        = \cfrac{1}{2} \begin{bmatrix}
+                        2 & -11 &  18 & -9 \\
+                        0 &  18 & -45 & 27 \\
+                        0 &  -9 &  36 & -27 \\
+                        0 &   2 &  -9 &  9
+                        \end{bmatrix}
+                        \begin{bmatrix} 1 \\ u \\ u^2 \\ u^3 \end{bmatrix}
+                        = \cfrac{1}{2} \begin{pmatrix}
+                        2 - 11u + 18u^2 - 9u^3 \\[0.5ex]
+                        18u - 45u^2 + 27u^3 \\[0.5ex]
+                        -9u + 36u^2 - 27u^3 \\[0.5ex]
+                        2u - 9u^2 + 9u^3
+                        \end{pmatrix}
+                        = \begin{pmatrix} b_0(u) \\ b_1(u) \\ b_2(u) \\ b_3(u) \end{pmatrix}
+                    "/></p>
+
+                    <p><InlineMath math="
+                        p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
                     "/></p>
                     <p><strong>보간법의 한계:&nbsp;</strong>조인트 지점이 부드럽지 않을 수 있다. (미분값이 불연속적일 수 있다.)</p>
                 </div>
@@ -48,104 +81,156 @@ export default function CurveDescription({curveType}: {curveType: CurveType}) {
         )
     }else if(curveType === 'hermite'){
         return (
-            <div>
-                <div className="mb-6">
-                    <h1 className="font-bold text-xl mb-4 mt-6">Hermit 곡선</h1>
-                    <div className="text-sm ml-2 space-y-4">
-                        <p>곡선의 양 끝점과 양 끝점에서의 미분값(접선)을 사용하여 곡선을 정의한다.</p>
-                        <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
-                        <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
-                        <p><InlineMath math="p=\begin{pmatrix}p_0\\p_0'\\p_2\\p_2'\end{pmatrix}
-                        =\begin{pmatrix}p_0\\p_1-p_0\\p_2\\p_3-p_2\end{pmatrix}
-                        =\begin{pmatrix}p(0)\\p'(0)\\p(1)\\p'(1)\end{pmatrix}
+            <div className="mb-6">
+                <h1 className="font-bold text-xl mb-4 mt-6">Hermit 곡선</h1>
+                <div className="text-sm ml-2 space-y-4">
+                    <p>곡선의 양 끝점과 양 끝점에서의 미분값(접선)을 사용하여 곡선을 정의한다.</p>
+                    <p>곡선 <InlineMath math="p"/>를 u에 대해 3차 방정식으로 표현하면</p>
+                    <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
+                    <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
                         =\begin{pmatrix}
                         c_0\\[0.5ex]
-                        c_1\\[0.5ex]
                         c_0+c_1+c_2+c_3\\[0.5ex]
+                        c_1\\[0.5ex]
                         c_1+2c_2+3c_3
                         \end{pmatrix}
-                        =\begin{bmatrix}1&0&0&0\\0&1&0&0\\1&1&1&1\\0&1&2&3\end{bmatrix}
-                        \begin{bmatrix}c_0\\c_1\\c_2\\c_3\end{bmatrix}
-                        =Ac
-                        "/></p>
-                        <p><InlineMath math="M_H=A^{-1}=\begin{bmatrix}
-                        1&0&0&0\\
-                        0&1&0&0\\
-                        -3&-2&3&-1\\
-                        2&1&-2&1
-                        \end{bmatrix}"/></p>
-                        <p><InlineMath math="b(u)=M_H^Tu
+                        =\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}c
+                    "/></p>
+
+                    <div className="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-base mb-2">[ 곡선 규칙 정의 ]</p>
+                        <ul className="text-sm ml-2 space-y-2">
+                            <p><InlineMath math="p(0)=p_0"/></p>
+                            <p><InlineMath math="p(1)=p_2"/></p>
+                            <p><InlineMath math="p'(0)=p_1-p_0"/>  (벡터 입력을 대체)</p>
+                            <p><InlineMath math="p'(1)=p_3-p_2"/>  (벡터 입력을 대체)</p>
+                        </ul>
+                    </div>
+
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
+                        =\begin{pmatrix}
+                        p_0\\p_2\\p_1-p_0\\p_3-p_2
+                        \end{pmatrix}
                         =\begin{bmatrix}
-                        1&0&-3&2\\
+                        1&0&0&0\\0&0&1&0\\-1&1&0&0\\0&0&-1&1
+                        \end{bmatrix}p
+
+                    "/></p>
+
+                    <p><InlineMath math="
+                        c=\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}^{-1}
+                        \begin{bmatrix}
+                        1&0&0&0\\0&0&1&0\\-1&1&0&0\\0&0&-1&1
+                        \end{bmatrix}p
+                        =M_H\:p
+                    "/></p>
+
+                    <p><InlineMath math="
+                        M_H=\begin{bmatrix}
+                        1&0&0&0\\
+                        -1&1&0&0\\
+                        -1&-2&4&-1\\
+                        1&1&-3&1
+                        \end{bmatrix}
+                    "/></p>
+
+                    <p><InlineMath math="
+                        b(u)=M_H^Tu
+                        =\begin{bmatrix}
+                        1&-1&-1&1\\
                         0&1&-2&1\\
-                        0&0&3&-2\\
+                        0&0&4&-3\\
                         0&0&-1&1
                         \end{bmatrix}
                         \begin{bmatrix}1\\u\\u^2\\u^3\end{bmatrix}
                         =\begin{pmatrix}
-                        1-3u^2+2u^3\\[0.5ex]
+                        1-u-u^2+u^3\\[0.5ex]
                         u-2u^2+u^3\\[0.5ex]
-                        3u^2-2u^3\\[0.5ex]
+                        4u^2-3u^3\\[0.5ex]
                         -u^2+u^3
                         \end{pmatrix}
-                        =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}"/></p>
-                        <p><InlineMath math="
-                        p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)(p_1-p_0)+b_2(u)p_2+b_3(u)(p_3-p_2)
-                        "/></p>
-                        <p><strong>Hermit의 한계:&nbsp;</strong>최적의 곡선 미분값을 알지 못하거나, 데이터 점만 있는 경우 표현 불가</p>
-                        <p>* 여기선 <InlineMath math="p1, p3"/>를 접선 벡터로 가정</p>
-                    </div>
+                        =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}
+                    "/></p>
+                    <p><InlineMath math="
+                        p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
+                    "/></p>
+                    <p><strong>Hermit의 한계:&nbsp;</strong>최적의 곡선 미분값을 알지 못하거나, 데이터 점만 있는 경우 표현 불가</p>
+                    <p>* 여기선 <InlineMath math="p_1-p_0, p_3-p_2"/>를 접선 벡터로 가정</p>
                 </div>
             </div>
         )
     }else if(curveType === 'bezier'){
         return (
-            <div>
-                <div className="mb-6">
-                    <h1 className="font-bold text-xl mb-4 mt-6">Bezier 곡선</h1>
-                    <div className="text-sm ml-2 space-y-4">
-                        <p>4개의 데이터 점 집합을 사용하여 곡선을 정의한다.</p>
-                        <p>인접한 점들 사이의 차이를 이용하여 끝점에서의 미분값을 근사한다.</p>
-                        <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
-                        <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
-                        <div>
-                            <p className="mt-6 mb-2"><strong>미분 추정:</strong></p>
-                            <p><InlineMath math="p'(0)=3(p_1-p_0)=c_1"/></p>
-                            <p><InlineMath math="p'(1)=3(p_3-p_2)=c_1+2c_2+3c_3"/></p>
-                        </div>
-                        <div className="flex justify-start items-start gap-20 mt-4 bg-gray-50 p-4 rounded-lg">
-                            <div className="space-y-2">
-                                <p><strong>[ <InlineMath math="p_1"/> 유도 ]</strong></p>
-                                <p><InlineMath math="3(p_1-c_0)=c_1"/></p>
-                                <p><InlineMath math="p_1-c_0=\cfrac{1}{3}\:c_1"/></p>
-                                <p><InlineMath math="p_1=c_0+\cfrac{1}{3}\:c_1"/></p>
-                            </div>
-                            <div className="space-y-2">
-                                <p><strong>[ <InlineMath math="p_2"/> 유도 ]</strong></p>
-                                <p><InlineMath math="3(c_0+c_1+c_2+c_3-p_2)=c_1+2c_2+3c_3"/></p>
-                                <p><InlineMath math="c_0+c_1+c_2+c_3-p_2=\cfrac{1}{3}\:c_1+\cfrac{2}{3}\:c_2+c_3"/></p>
-                                <p><InlineMath math="p_2=c_0+\cfrac{2}{3}\:c_1+\cfrac{1}{3}\:c_2"/></p>
-                            </div>
-                        </div>
-
-                        <p><InlineMath math="p=\begin{pmatrix}p_0\\p_1\\p_2\\p_3\end{pmatrix}
+            <div className="mb-6">
+                <h1 className="font-bold text-xl mb-4 mt-6">Bezier 곡선</h1>
+                <div className="text-sm ml-2 space-y-4">
+                    <p>4개의 데이터 점 집합을 사용하여 곡선을 정의한다.</p>
+                    <p>인접한 점들 사이의 차이를 이용하여 끝점에서의 미분값을 근사한다.</p>
+                    <p>곡선 <InlineMath math="p"/>를 u에 대해 3차 방정식으로 표현하면</p>
+                    <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
+                    <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
                         =\begin{pmatrix}
-                        c_0\\[0.8ex]
-                        c_0+\cfrac{1}{3}\:c_1\\[0.8ex]
-                        c_0+\cfrac{2}{3}\:c_1+\cfrac{1}{3}\:c_2\\[0.8ex]
-                        c_0+c_1+c_2+c_3
+                        c_0\\[0.5ex]
+                        c_0+c_1+c_2+c_3\\[0.5ex]
+                        c_1\\[0.5ex]
+                        c_1+2c_2+3c_3
                         \end{pmatrix}
-                        =\begin{bmatrix}1&0&0&0\\1&1/3&0&0\\1&2/3&1/3&0\\1&1&1&1\end{bmatrix}
-                        \begin{bmatrix}c_0\\c_1\\c_2\\c_3\end{bmatrix}
-                        =Ac
-                        "/></p>
-                        <p><InlineMath math="M_B=A^{-1}=\begin{bmatrix}
+                        =\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}c
+                    "/></p>
+
+                    <div className="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-base mb-2">[ 곡선 규칙 정의 ]</p>
+                        <ul className="text-sm ml-2 space-y-2">
+                            <p><InlineMath math="p(0)=p_0"/></p>
+                            <p><InlineMath math="p(1)=p_3"/></p>
+                            <p><InlineMath math="p'(0)=3(p_1-p_0)"/></p>
+                            <p><InlineMath math="p'(1)=3(p_3-p_2)"/></p>
+                        </ul>
+                    </div>
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
+                        =\begin{pmatrix}
+                        c_0\\[0.5ex]
+                        c_0+c_1+c_2+c_3\\[0.5ex]
+                        c_1\\[0.5ex]
+                        c_1+2c_2+3c_3
+                        \end{pmatrix}
+                        =\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}c
+                    "/></p>
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
+                        =\begin{pmatrix}
+                        p_0\\p_3\\3p_1-3p_0\\3p_3-3p_2
+                        \end{pmatrix}
+                        =\begin{bmatrix}
+                        1&0&0&0\\0&0&0&1\\-3&3&0&0\\0&0&-3&3
+                        \end{bmatrix}p
+
+                    "/></p>
+
+                    <p><InlineMath math="
+                        c=\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}^{-1}
+                        \begin{bmatrix}
+                        1&0&0&0\\0&0&0&1\\-3&3&0&0\\0&0&-3&3
+                        \end{bmatrix}p
+                        =M_B\:p
+                    "/></p>
+
+                    <p><InlineMath math="
+                        M_B=\begin{bmatrix}
                         1&0&0&0\\
                         -3&3&0&0\\
                         3&-6&3&0\\
                         -1&3&-3&1
-                        \end{bmatrix}"/></p>
-                        <p><InlineMath math="b(u)=M_B^Tu
+                        \end{bmatrix}
+                    "/></p>
+                    <p><InlineMath math="
+                        b(u)=M_B^Tu
                         =\begin{bmatrix}
                         1&-3&3&-1\\
                         0&3&-6&3\\
@@ -154,8 +239,8 @@ export default function CurveDescription({curveType}: {curveType: CurveType}) {
                         \end{bmatrix}
                         \begin{bmatrix}1\\u\\u^2\\u^3\end{bmatrix}
                         =\begin{pmatrix}
-                        1-3u+3u^2-1u^3\\[0.5ex]
-                        3u+-6u^2+3u^3\\[0.5ex]
+                        1-3u+3u^2-u^3\\[0.5ex]
+                        3u-6u^2+3u^3\\[0.5ex]
                         3u^2-3u^3\\[0.5ex]
                         u^3
                         \end{pmatrix}
@@ -165,137 +250,215 @@ export default function CurveDescription({curveType}: {curveType: CurveType}) {
                         3u^2(1-u)\\[0.5ex]
                         u^3
                         \end{pmatrix}
-                        =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}"/></p>
-                        <p><InlineMath math="
+                        =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}
+                    "/></p>
+                    <p><InlineMath math="
                         p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
-                        "/></p>
-                    </div>
+                    "/></p>
                 </div>
             </div>
         )
     }else if(curveType === 'bspline'){
         return (
-            <div>
-                <div className="mb-6">
-                    <h1 className="font-bold text-xl mb-4 mt-6">B-Spline 곡선</h1>
-                    <div className="text-sm ml-2 space-y-4">
-                        <p>4개의 제어점을 사용하여 중간 2개의 점 사이를 보간한다.</p>
-                        <p>
-                            주어진 4개의 점 <InlineMath math="{p_{i-2},p_{i-1},p_i,p_{i+1}}"/>을 사용하여
-                            <InlineMath math="p_{i-1},p_i"/> 사이의 곡선을 만든다.
-                        </p>
-                        <p>
-                            인접한 세그먼트를 생성할 때 하나의 제어점 <InlineMath math="p_{i+2}"/>를 추가하고
-                            <InlineMath math="{p_{i-1},p_i,p_{i+1},p_{i+2}}"/>점들을 사용하여
-                            <InlineMath math="p_i,p_{i+1}"/>사이의 세그먼트를 만든다.
-                        </p>
-                        <p>
-                            5개의 제어점 <InlineMath math="{p_{i-2},p_{i-1},p_i,p_{i+1},p_{i+2}}"/>가 주어질 때,
-                        </p>
-                        <p>
-                            앞 세그먼트를 <InlineMath math="q(u)"/>, 다음 세그먼트를 <InlineMath math="p(u)"/>로 하고 다음 조건을 따른다.
-                        </p>
+            <div className="mb-6">
+                <h1 className="font-bold text-xl mb-4 mt-6">B-Spline 곡선</h1>
+                <div className="text-sm ml-2 space-y-4">
+                    <p>
+                        주어진 4개의 점 <InlineMath math="\{p_{i-2},p_{i-1},p_i,p_{i+1}\}"/>을 사용하여
+                        <InlineMath math="p_{i-1},p_i"/> 사이의 곡선을 만든다.
+                    </p>
+                    <p>인접한 세그먼트를 생성할 때 하나의 제어점 <InlineMath math="p_{i+2}"/>를 추가하고</p>
+                    <p>
+                        <InlineMath math="\{p_{i-1},p_i,p_{i+1},p_{i+2}\}"/> 점들을 사용하여&nbsp;
+                        <InlineMath math="p_i,p_{i+1}"/>사이의 세그먼트를 만든다.
+                    </p>
+                    <p>
+                        5개의 제어점 <InlineMath math="\{p_{i-2},p_{i-1},p_i,p_{i+1},p_{i+2}\}"/>가 주어질 때,
+                    </p>
+                    <p>
+                        앞 세그먼트를 <InlineMath math="q(u)"/>, 다음 세그먼트를 <InlineMath math="p(u)"/>로 하고 다음 조건을 설정한다.
+                    </p>
 
-                        <div className="justify-start items-start gap-20 mt-4 bg-gray-50 p-4 rounded-lg">
-                            <p><strong>[ 위치 연속성 ]</strong></p>
+                    <div className="justify-start items-start gap-20 mt-4 bg-gray-50 p-4 rounded-lg">
+                        <div className="mb-4 space-y-2">
+                            <p className="font-bold text-base">[ 위치 연속성 ]</p>
                             <ul>
                                 <li>
                                     <strong>대칭성: </strong>중심이 되는 점 <InlineMath math="p_i"/>의 영향력이 가장 커야하고,
-                                    양 옆의 <InlineMath math="p_{i-1},p_{i+1}"/>은 대칭으로 같은 영향력을 가져야 한다.
+                                    양 옆의 <InlineMath math="p_{i-1},\:p_{i+1}"/>은 대칭으로 같은 영향력을 가져야 한다.
                                 </li>
                                 <li>
                                     <strong>단위 분할성: </strong>세 가중치의 합은 반드시 1이어야 한다.
                                 </li>
                             </ul>
                             <p>* 여기선 1:4:1 비율로 분할한다.</p>
-                            <p>
-                                <InlineMath math="q(1)=p(0)=\cfrac{1}{6}\:p_{i-1}+\cfrac{4}{6}\:\:p_i+\cfrac{1}{6}\:p_{i+1}"/>
-                            </p>
-                            <p><strong>[ 접선 연속성 ]</strong></p>
+                            <p><InlineMath math="
+                                q(1)=p(0)=\cfrac{1}{6}\:p_{i-1}+\cfrac{4}{6}\:\:p_i+\cfrac{1}{6}\:p_{i+1}
+                            "/></p>
+                        </div>
+                        <div className="space-y-2">
+                            <p className="font-bold text-base">[ 접선 연속성 ]</p>
                             <p><InlineMath math="p_i"/>에서의 접선 벡터는
                                 이전 제어점<InlineMath math="p_{i-1}"/>과
                                 다음 제어점<InlineMath math="p_{i+1}"/>의 방향 벡터의 반으로 한다.</p>
                             <p><InlineMath math="q'(1)=p'(0)=\cfrac{1}{2}\:(p_{i+1}-p_{i-1})"/></p>
                         </div>
-                        <p>두 조건에 의해 4개의 제어점 <InlineMath math="{p_0,p_1,p_2,p_3}"/>에 대해  4개의 방정식을 얻게 된다.</p>
+                    </div>
+                    <p>두 조건에 의해 4개의 제어점 <InlineMath math="{p_0,p_1,p_2,p_3}"/>에 대해  4개의 방정식을 얻게 된다.</p>
 
-                        <ul className="list-disc list-outside space-y-2 mb-8 ml-4">
-                            <li><InlineMath math="p(0)=c_0=\cfrac{1}{6}\:(p_0+4p_1+p_2)"/></li>
-                            <li><InlineMath math=""/></li>
-
+                    <div className="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-base mb-2">[ 곡선 규칙 정의 ]</p>
+                        <ul className="text-sm ml-2 space-y-2">
+                            <li><InlineMath math="p(0)=\cfrac{1}{6}\:(p_0+4p_1+p_2)"/></li>
+                            <li><InlineMath math="p(1)=\cfrac{1}{6}\:(p_1+4p_2+p_3)"/></li>
+                            <li><InlineMath math="p'(0)=\cfrac{1}{2}\:(p_2-p_0)"/></li>
+                            <li><InlineMath math="p'(1)=\cfrac{1}{2}\:(p_3-p_1)"/></li>
                         </ul>
+                    </div>
 
-
-
-
-
-
-                        <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
-                        <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
-
-
-                        <div>
-                            <p className="mt-6 mb-2"><strong>미분 추정:</strong></p>
-                            <p><InlineMath math="p'(0)=3(p_1-p_0)=c_1"/></p>
-                            <p><InlineMath math="p'(1)=3(p_3-p_2)=c_1+2c_2+3c_3"/></p>
-                        </div>
-                        <div className="flex justify-start items-start gap-20 mt-4 bg-gray-50 p-4 rounded-lg">
-                            <div className="space-y-2">
-                                <p><strong>[ <InlineMath math="p_1"/> 유도 ]</strong></p>
-                                <p><InlineMath math="3(p_1-c_0)=c_1"/></p>
-                                <p><InlineMath math="p_1-c_0=\cfrac{1}{3}\:c_1"/></p>
-                                <p><InlineMath math="p_1=c_0+\cfrac{1}{3}\:c_1"/></p>
-                            </div>
-                            <div className="space-y-2">
-                                <p><strong>[ <InlineMath math="p_2"/> 유도 ]</strong></p>
-                                <p><InlineMath math="3(c_0+c_1+c_2+c_3-p_2)=c_1+2c_2+3c_3"/></p>
-                                <p><InlineMath math="c_0+c_1+c_2+c_3-p_2=\cfrac{1}{3}\:c_1+\cfrac{2}{3}\:c_2+c_3"/></p>
-                                <p><InlineMath math="p_2=c_0+\cfrac{2}{3}\:c_1+\cfrac{1}{3}\:c_2"/></p>
-                            </div>
-                        </div>
-
-                        <p><InlineMath math="p=\begin{pmatrix}p_0\\p_1\\p_2\\p_3\end{pmatrix}
+                    <p>곡선 <InlineMath math="p"/>를 u에 대해 3차 방정식으로 표현하면</p>
+                    <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
+                    <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
                         =\begin{pmatrix}
-                        c_0\\[0.8ex]
-                        c_0+\cfrac{1}{3}\:c_1\\[0.8ex]
-                        c_0+\cfrac{2}{3}\:c_1+\cfrac{1}{3}\:c_2\\[0.8ex]
-                        c_0+c_1+c_2+c_3
+                        c_0\\[0.5ex]
+                        c_0+c_1+c_2+c_3\\[0.5ex]
+                        c_1\\[0.5ex]
+                        c_1+2c_2+3c_3
                         \end{pmatrix}
-                        =\begin{bmatrix}1&0&0&0\\1&1/3&0&0\\1&2/3&1/3&0\\1&1&1&1\end{bmatrix}
-                        \begin{bmatrix}c_0\\c_1\\c_2\\c_3\end{bmatrix}
-                        =Ac
-                        "/></p>
-                        <p><InlineMath math="M_B=A^{-1}=\begin{bmatrix}
-                        1&0&0&0\\
-                        -3&3&0&0\\
-                        3&-6&3&0\\
-                        -1&3&-3&1
-                        \end{bmatrix}"/></p>
-                        <p><InlineMath math="b(u)=M_B^Tu
-                        =\begin{bmatrix}
+                        =\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}c
+                    "/></p>
+
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
+                        =\begin{pmatrix}
+                        \cfrac{1}{6}\:(p_0+4p_1+p_2)\\
+                        \cfrac{1}{6}\:(p_1+4p_2+p_3)\\
+                        \cfrac{1}{2}\:(p_2-p_0)\\
+                        \cfrac{1}{2}\:(p_3-p_1)
+                        \end{pmatrix}
+                        =\cfrac{1}{6}\begin{bmatrix}
+                        1&4&1&0\\0&1&4&1\\-3&0&3&0\\0&-3&0&3
+                        \end{bmatrix}p
+
+                    "/></p>
+
+                    <p><InlineMath math="
+                        c=\cfrac{1}{6}\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}^{-1}
+                        \begin{bmatrix}
+                        1&4&1&0\\0&1&4&1\\-3&0&3&0\\0&-3&0&3
+                        \end{bmatrix}p
+                        =M_S\:p
+                    "/></p>
+
+                    <p><InlineMath math="
+                        M_S=\cfrac{1}{6}\begin{bmatrix}1&4&1&0\\-3&0&3&0\\3&-6&3&0\\-1&3&-3&1\end{bmatrix}
+                    "/></p>
+
+                    <p><InlineMath math="
+                        b(u)=M_S^Tu
+                        =\cfrac{1}{6}
+                        \begin{bmatrix}
                         1&-3&3&-1\\
-                        0&3&-6&3\\
-                        0&0&3&-3\\
+                        4&0&-6&3\\
+                        1&3&3&-3\\
                         0&0&0&1
                         \end{bmatrix}
                         \begin{bmatrix}1\\u\\u^2\\u^3\end{bmatrix}
-                        =\begin{pmatrix}
-                        1-3u+3u^2-1u^3\\[0.5ex]
-                        3u+-6u^2+3u^3\\[0.5ex]
-                        3u^2-3u^3\\[0.5ex]
-                        u^3
-                        \end{pmatrix}
-                        =\begin{pmatrix}
+                        =\cfrac{1}{6}
+                        \begin{pmatrix}
                         (1-u)^3\\[0.5ex]
-                        3u(1-u)^2\\[0.5ex]
-                        3u^2(1-u)\\[0.5ex]
+                        4-6u^2+3u^3\\[0.5ex]
+                        1+3u+3u^2-3u^3\\[0.5ex]
                         u^3
                         \end{pmatrix}
-                        =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}"/></p>
-                        <p><InlineMath math="
-                        p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
-                        "/></p>
+                        =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}
+                    "/></p>
+                    <p><InlineMath math="
+                    p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
+                    "/></p>
+                </div>
+            </div>
+        )
+    }else if(curveType === 'catmull rom'){
+        return (
+            <div className="mb-6">
+                <h1 className="font-bold text-xl mb-4 mt-6">Catmull-Rom 곡선</h1>
+                <div className="text-sm ml-2 space-y-4">
+                    <p>
+                        주어진 4개의 점 <InlineMath math="\{p_{i-2},p_{i-1},p_i,p_{i+1}\}"/>을 사용하여
+                        <InlineMath math="p_{i-1},p_i"/> 사이의 곡선을 만든다.
+                    </p>
+                    <p>곡선 <InlineMath math="p"/>를 u에 대해 3차 방정식으로 표현하면</p>
+                    <p><InlineMath math="p(u)=c_0+c_1u+c_2u^2+c_3u^3"/></p>
+                    <p><InlineMath math="p'(u)=c_1+2c_2u+3c_3u^2"/></p>
+
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
+                        =\begin{pmatrix}
+                        c_0\\[0.5ex]
+                        c_0+c_1+c_2+c_3\\[0.5ex]
+                        c_1\\[0.5ex]
+                        c_1+2c_2+3c_3
+                        \end{pmatrix}
+                        =\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}c
+                    "/></p>
+
+                    <div className="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-base mb-2">[ 곡선 규칙 정의 ]</p>
+                        <ul className="text-sm ml-2 space-y-2">
+                            <p><InlineMath math="p(0)=p_1"/></p>
+                            <p><InlineMath math="p(1)=p_2"/></p>
+                            <p><InlineMath math="p'(0)=\cfrac{1}{2}\:(p_2-p_0)"/></p>
+                            <p><InlineMath math="p'(1)=\cfrac{1}{2}\:(p_3-p_1)"/></p>
+                        </ul>
                     </div>
+
+                    <p><InlineMath math="
+                        \begin{pmatrix}p(0)\\p(1)\\p'(0)\\p'(1)\end{pmatrix}
+                        =\begin{pmatrix}
+                        p_1\\[0.8ex]p_2\\[0.8ex]\cfrac{1}{2}\:(p_2-p_0)\\\cfrac{1}{2}\:(p_3-p_1)
+                        \end{pmatrix}
+                        =\cfrac{1}{2}\begin{bmatrix}
+                        0&2&0&0\\0&0&2&0\\-1&0&1&0\\0&-1&0&1
+                        \end{bmatrix}p
+
+                    "/></p>
+
+                    <p><InlineMath math="
+                        c=\cfrac{1}{2}\begin{bmatrix}1&0&0&0\\1&1&1&1\\0&1&0&0\\0&1&2&3\end{bmatrix}^{-1}
+                        \begin{bmatrix}
+                        0&2&0&0\\0&0&2&0\\-1&0&1&0\\0&-1&0&1
+                        \end{bmatrix}p
+                        =M_{CR}\:p
+                    "/></p>
+
+                    <p><InlineMath math="M_{CR}=\cfrac{1}{2}\begin{bmatrix}
+                    0&2&0&0\\
+                    -1&0&1&0\\
+                    2&-5&4&-1\\
+                    -1&3&-3&1
+                    \end{bmatrix}"/></p>
+
+                    <p><InlineMath math="b(u)=M_{CR}^Tu
+                    =\cfrac{1}{2}\begin{bmatrix}
+                    0&-1&2&-1\\
+                    2&0&-5&3\\
+                    0&1&4&-3\\
+                    0&0&-1&1
+                    \end{bmatrix}
+                    \begin{bmatrix}1\\u\\u^2\\u^3\end{bmatrix}
+                    =\cfrac{1}{2}\begin{pmatrix}
+                    -u+2u^2-u^3\\[0.5ex]
+                    2-5u^2+3u^3\\[0.5ex]
+                    u+4u^2-3u^3\\[0.5ex]
+                    -u^2+u^3
+                    \end{pmatrix}
+                    =\begin{pmatrix}b_0(u)\\b_1(u)\\b_2(u)\\b_3(u)\end{pmatrix}"/></p>
+                    <p><InlineMath math="
+                    p(u)=b(u)^Tp=b_0(u)p_0+b_1(u)p_1+b_2(u)p_2+b_3(u)p_3
+                    "/></p>
                 </div>
             </div>
         )

@@ -28,7 +28,9 @@ export default function BasePage({
                     </div>
                     <div className="flex justify-between items-center mb-10 w-full">
                         <h1 className="text-3xl font-extrabold text-slate-900">{ data?.title }</h1>
-                        {button}
+                        <div className="-mt-[1.5px]">
+                            {button}
+                        </div>
                     </div>
                     {children}
                 </article>

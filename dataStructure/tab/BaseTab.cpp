@@ -36,22 +36,30 @@ void BaseTab::setBackground() const {
     SDL_RenderFillRect(renderer, &screen_rect);
 }
 
-SDL_Texture* BaseTab::createTextTexture(const std::string& text, SDL_Color color, float* out_w, float* out_h, TTF_Font* font) const {
+void BaseTab::writeText(const std::string& text, SDL_Color color, TTF_Font* font, int x, int y) const {
+    std::string textToRender = text.empty() ? " " : text;
 
     if (text.empty() || text.c_str() == nullptr) {
-        return nullptr;
+        return;
     }
 
     SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), text.length(), color);
-    if (!surface) return nullptr;
+    if (!surface) return;
 
-    *out_w = static_cast<float>(surface->w);
-    *out_h = static_cast<float>(surface->h);
+    float width = static_cast<float>(surface->w);
+    float height = static_cast<float>(surface->h);
 
     // 표면을 바탕으로 비디오 카드(GPU) 전용 텍스처로 전환
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_DestroySurface(surface); // 역할이 끝난 CPU 데이터 제거
 
-    return texture;
+    SDL_FRect textSize = {
+        (float)x,
+        (float)y,
+        width,
+        height
+    };
+    SDL_RenderTexture(renderer, texture, NULL, &textSize);
+    SDL_DestroyTexture(texture);
 }
 

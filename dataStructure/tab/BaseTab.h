@@ -28,7 +28,7 @@ public:
     explicit BaseTab(SDL_Renderer* target_renderer);
 
     void setBackground() const;
-    SDL_Texture* createTextTexture(const std::string& text, SDL_Color color, float* out_w, float* out_h, TTF_Font* font) const;
+    void writeText(const std::string& text, SDL_Color color, TTF_Font* font, int x, int y) const;
 
     virtual void clear(){}
     virtual void onEnter() {}

@@ -7,6 +7,11 @@ class QueueStack : public BaseTab {
 private:
     std::string inputBuffer = "";
     bool isInputBoxFocused = false;
+    int inputX = 50;
+    int inputY = 50;
+    int inputWidth = 200;
+    int inputHeight = 50;
+    int buttonWidth = 100;
 
 
 public:
@@ -14,11 +19,14 @@ public:
     ~QueueStack() override = default;
 
     void drawInputBox();
+    void drawPushButton();
 
 
     bool init(SDL_Renderer *r);
     void onEnter() override;
     void handleEvent(const SDL_Event& e);
+    void handleInput(const SDL_Event &e);
+
     void update() override;
     void render() override;
     void onExit() override;

@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include "app.h"
 #include <iostream>
 #include <cmath>
@@ -6,6 +7,7 @@ App::App() {
     window = nullptr;
     renderer = nullptr;
     isRunning = false;
+
 }
 
 bool App::Initialize() {
@@ -52,8 +54,6 @@ void App::Run() {
         // 붓 색상을 하얀색으로 변경
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
-        // ❌ [기존 코드 지우기]: DrawCircle(400.0f, 300.0f, 30.0f); 
-
         // 💡 [새로운 코드 추가]: 트리를 순회하며 모든 노드와 연결 선 그리기 함수 호출
         DrawTree(tree.GetRoot());
 
@@ -65,6 +65,7 @@ void App::DrawCircle(float centerX, float centerY, float radius) {
     for (int i = 0; i < 360; i++) {
         float angle1 = i * M_PI / 180.0f;
         float angle2 = (i + 1) * M_PI / 180.0f;
+
 
         float x1 = centerX + radius * cosf(angle1);
         float y1 = centerY + radius * sinf(angle1);

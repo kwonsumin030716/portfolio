@@ -9,9 +9,6 @@ const nextConfig: NextConfig = {
     typescript: {
         ignoreBuildErrors: true,
     },
-    eslint: {
-        ignoreDuringBuilds: true,
-    },
 
     async rewrites() {
         return [
@@ -20,6 +17,24 @@ const nextConfig: NextConfig = {
                 destination: `${BACKEND_URL}/api/:path*`,
             },
         ];
+    },
+
+    webpack: (config, { isServer }) => {
+        config.experiments = {
+            ...config.experiments,
+            asyncWebAssembly: true,
+            layers: true,
+        };
+
+        if (!isServer) {
+            config.resolve.fallback = {
+                ...config.resolve.fallback,
+                fs: false,
+                path: false,
+                crypto: false,
+            };
+        }
+        return config;
     },
 };
 

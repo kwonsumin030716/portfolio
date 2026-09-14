@@ -8,3 +8,10 @@ out/
 # C++ 빌드 결과물 무시
 *.exe
 *.obj
+
+#인텔리제이 설정 포함
+!.idea/modules.xml
+!.idea/encodings.xml
+!.idea/vcs.xml
+!*.iml
+!**/.*.iml

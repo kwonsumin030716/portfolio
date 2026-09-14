@@ -3,63 +3,91 @@
 //
 
 #include "BaseTab.h"
+#include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
 
 #include <iostream>
 #include <ostream>
 
-BaseTab::BaseTab(SDL_Renderer* target_renderer)
-    : renderer(target_renderer)
-{
+BaseTab::BaseTab() : renderer{nullptr} {}
+BaseTab::~BaseTab() {}
 
-    if (!TTF_Init()) {
-        std::cerr << "TTF 초기화 실패: " << SDL_GetError() << "\n";
+bool BaseTab::init(SDL_Renderer* r) {
+    renderer = r;
+
+    if (!TTF_WasInit() && !TTF_Init()) {
+        SDL_Log("SDL_TTF 라이브러리 초기화 실패: %s", SDL_GetError());
+        return false;
     }
 
-    fontRegular = TTF_OpenFont("../resources/fonts/Geist-Regular.ttf", 24);
-
-    if (!fontRegular) {
-        std::cerr << "failed to load font: " << SDL_GetError() << "\n";
-    }
-
+    return true;
 }
 
 void BaseTab::setBackground() const {
+    if (!renderer) return;
+
+    //w, h 불러오기
     int current_w = 0;
     int current_h = 0;
     SDL_GetRenderOutputSize(renderer, &current_w, &current_h);
 
-    float w = static_cast<float>(current_w);
-    float h = static_cast<float>(current_h);
-
+    SDL_FRect screen_rect = { 0.0f, 0.0f, static_cast<float>(current_w), static_cast<float>(current_h) };
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_FRect screen_rect = { 0.0f, 0.0f, w, h };
     SDL_RenderFillRect(renderer, &screen_rect);
 }
 
-void BaseTab::writeText(const std::string& text, SDL_Color color, TTF_Font* font, int x, int y) const {
-    std::string textToRender = text.empty() ? " " : text;
-
+void BaseTab::writeText(SDL_FRect* rect, const std::string& text, SDL_Color color, int size, TextStyle s, TextAlign a) const {
     if (text.empty() || text.c_str() == nullptr) {
         return;
     }
 
+    if (!TTF_WasInit() && !TTF_Init()) {
+        SDL_Log("SDL_TTF Font 초기화 실패: %s", SDL_GetError());
+        return;
+    }
+
+    TTF_Font* font;
+    if (s == TextStyle::BOLD) {
+        font = TTF_OpenFont("resources/fonts/Geist-Bold.ttf", static_cast<float>(size));
+    }else {
+        font = TTF_OpenFont("resources/fonts/Geist-Regular.ttf", static_cast<float>(size));
+    }
+
+    if (!font) {
+        SDL_Log("SDL_TTF 폰트 로드 실패: %s", SDL_GetError());
+        return;
+    }
+
+
     SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), text.length(), color);
-    if (!surface) return;
+    if (!surface) {
+        TTF_CloseFont(font);
+        return;
+    }
 
     float width = static_cast<float>(surface->w);
     float height = static_cast<float>(surface->h);
 
-    // 표면을 바탕으로 비디오 카드(GPU) 전용 텍스처로 전환
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_DestroySurface(surface); // 역할이 끝난 CPU 데이터 제거
+    SDL_DestroySurface(surface);
 
-    SDL_FRect textSize = {
-        (float)x,
-        (float)y,
-        width,
-        height
+    float finalX = rect->x;
+    float finalY = rect->y + (rect->h - height) / 2.0f;
+
+    if (a == TextAlign::CENTER) {
+        finalX = rect->x + (rect->w - width) / 2.0f;
+    } else if (a == TextAlign::RIGHT) {
+        finalX = rect->x + rect->w - width;
+    }
+
+    const SDL_FRect textSize = {
+        .x = finalX,
+        .y = finalY,
+        .w = width,
+        .h = height
     };
-    SDL_RenderTexture(renderer, texture, NULL, &textSize);
+    SDL_RenderTexture(renderer, texture, nullptr, &textSize);
     SDL_DestroyTexture(texture);
+    TTF_CloseFont(font);
 }
 

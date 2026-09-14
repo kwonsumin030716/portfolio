@@ -19,7 +19,7 @@ export const projectData = [
         id:3,
         tag: "Project 03",
         tagColor: "text-blue-600 bg-blue-50",
-        title: "지료구조 시각화",
+        title: "자료구조 시각화",
         desc: "데이터의 추가, 제거에 따른 자료구조의 변화를 시각화합니다.",
         lang: "C++ / WASM"
     }

@@ -54,11 +54,19 @@ jobs:
               echo "Killing running application on PID: $CURRENT_PID"
               kill -15 $CURRENT_PID
               sleep 5
+
+              #안 되면 강제 종료
+              RECHECK_PID=$(lsof -t -i:8080)
+              if [ ! -z "$RECHECK_PID" ]; then
+                kill -9 $RECHECK_PID
+              fi
             fi
             
             mv ~/target/asset-0.0.1-SNAPSHOT.jar ~/asset-0.0.1-SNAPSHOT.jar || true
             rm -rf ~/target
             echo "${{ secrets.ENV_FILE_CONTENT }}" > ~/key.env
-            nohup java -Xmx350m -jar ~/asset-0.0.1-SNAPSHOT.jar > ~/nohup.out 2>&1 &
+
+            mkdir -p ~/tmp
+            nohup java -Xmx350m -Djava.io.tmpdir=/home/${{ secrets.GCP_USERNAME }}/tmp -jar ~/asset-0.0.1-SNAPSHOT.jar > ~/nohup.out 2>&1 &
           
             echo "Spring Boot Application deployed successfully!"

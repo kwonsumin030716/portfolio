@@ -1,0 +1,19 @@
+# portfolio/dataStructure/.gitignore
+
+### CMake / C++ 빌드 결과물 제외 ###
+build/
+bin/
+*.o
+*.a
+*.so
+*.dylib
+
+*.dll
+*.exe
+*.wasm
+*.js.mem
+
+### IDE 로컬 캐시 ###
+.vscode/
+.idea/workspace.xml
+.idea/tasks.xml

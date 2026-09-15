@@ -1,10 +1,11 @@
+# portfolio/asset/.gitignore
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+### STS 및 Eclipse 설정 제외 ###
 .apt_generated
 .classpath
 .factorypath
@@ -13,26 +14,13 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+### IntelliJ 모듈별 로컬 캐시 ###
+.idea/workspace.xml
+.idea/tasks.xml
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-### env / data ###
-*.env
+### 보안 및 데이터 파일 차단 ###
+account.env
+key.env
 data.json
 token.json
+*.env

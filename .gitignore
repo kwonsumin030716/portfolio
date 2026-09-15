@@ -1,17 +1,13 @@
-# IDE 설정 파일 무시
-.idea/
+# portfolio/.gitignore
+
+### IntelliJ IDEA 공통 캐시 (멀티 모듈 구조 유지용) ###
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/shelf/
+.idea/caches/
 *.iws
-*.iml
-*.ipr
-out/
 
-# C++ 빌드 결과물 무시
-*.exe
-*.obj
-
-#인텔리제이 설정 포함
-!.idea/modules.xml
-!.idea/encodings.xml
-!.idea/vcs.xml
-!*.iml
-!**/.*.iml
+### VS Code 캐시 ###
+.vscode/

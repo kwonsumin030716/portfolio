@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="include">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../msys64/mingw64/include" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

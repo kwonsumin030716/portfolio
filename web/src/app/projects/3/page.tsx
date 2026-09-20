@@ -3,6 +3,7 @@
 import BasePage from "@/components/BasePage";
 import { projectData } from "@/data/projects";
 import React, { useEffect, useRef, useState } from 'react';
+import QueueStack from "@/app/projects/3/QueueStack";
 
 const STRUCT_TYPE = ['queueStack', 'list', 'tree', 'hashtable', 'priority'] as const;
 type structType = (typeof STRUCT_TYPE)[number];
@@ -154,6 +155,14 @@ export default function Page(){
                         🟡 C++ WebAssembly 그래픽 엔진 초기화 중...
                     </div>
                 )}
+
+                {tab === 'queueStack' && (
+                    <QueueStack
+                        wasm={wasmInstance}
+                    />
+                    )
+                }
+
 
                 <div style={{ width: '100%', height: '600px', position: 'relative' }}>
                     <canvas

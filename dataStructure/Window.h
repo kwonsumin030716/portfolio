@@ -12,17 +12,22 @@
 
 class Window {
 private:
+    static Window* instance;
+
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
     BaseTab* currentTab = nullptr;
 
     BaseTab* queueStack = nullptr;
+    BaseTab* tree = nullptr;
 
     std::string title;
     int width = 800;
     int height = 400;
 
 public:
+    static Window* getInstance();
+
     Window();
     ~Window();
 

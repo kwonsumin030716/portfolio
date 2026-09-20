@@ -5,8 +5,17 @@
 #include <string>
 
 #include "tab/QueueStack.h"
+#include "tab/Tree.h"
 
-Window::Window() : window(nullptr), renderer(nullptr), currentTab(nullptr) {}
+
+Window* Window::instance = nullptr;
+Window *Window::getInstance() {
+    return instance;
+}
+
+Window::Window() : window(nullptr), renderer(nullptr), currentTab(nullptr) {
+    instance = this;
+}
 Window::~Window() {
     if (currentTab) {
         currentTab->onExit();
@@ -17,6 +26,9 @@ Window::~Window() {
     }
     if (window) {
         SDL_DestroyWindow(window);
+    }
+    if (instance == this) {
+        instance = nullptr;
     }
     SDL_Log("WASM Window 자원 해제 완료");
 }
@@ -34,6 +46,7 @@ bool Window::init() {
         return false;
     }
     queueStack = new QueueStack();
+    tree = new Tree();
     currentTab = queueStack;
 
     if (currentTab) {
@@ -84,8 +97,8 @@ void Window::setCurrentTab(int index) {
             SDL_Log("WASM C++: List 전환 수신 양호");
             break;
         case 2:
-            // if (!treeTab) treeTab = new TreeTab();
-            // currentTab = treeTab;
+            if (!tree) tree = new Tree();
+            currentTab = tree;
             SDL_Log("WASM C++: Tree 전환 수신 양호");
             break;
         case 3:
@@ -111,4 +124,10 @@ void Window::setCurrentTab(int index) {
     SDL_Log("🟢 C++ 탭 전환 완료 (Index: %d)", index);
 }
 
+extern "C" {
+    void changeTab(int tabIndex) {
+        setCurrentTab(tabIndex);
+        SDL_Log("C++ 내부 탭 변경 함수 실행 성공: %d", tabIndex);
+    }
+}
 

@@ -10,6 +10,7 @@ set(SOURCE_FILES
         Window.cpp
         tab/BaseTab.cpp
         tab/QueueStack.cpp
+        tab/Tree.cpp
 )
 
 if(EMSCRIPTEN)
@@ -37,6 +38,7 @@ if(EMSCRIPTEN)
     set_target_properties(dataStructure PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../web/public/wasm"
             OUTPUT_NAME "dataStructure"
+            SUFFIX ".js"
     )
 else()
     add_executable(dataStructure ${SOURCE_FILES})

@@ -61,12 +61,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
-extern "C" {
-    void changeTab(int tabIndex) {
-        if (g_window) {
-            g_window->setCurrentTab(tabIndex);
-            SDL_Log("C++ 내부 탭 변경 함수 실행 성공: %d", tabIndex);
-        }
-    }
-}

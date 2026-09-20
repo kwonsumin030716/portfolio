@@ -9,6 +9,7 @@
 
 #include "tab/BaseTab.h"
 #include "Types.h"
+#include "tab/QueueStack.h"
 
 class Window {
 private:
@@ -18,14 +19,14 @@ private:
     SDL_Renderer* renderer = nullptr;
     BaseTab* currentTab = nullptr;
 
-    BaseTab* queueStack = nullptr;
-    BaseTab* tree = nullptr;
-
     std::string title;
     int width = 800;
     int height = 400;
 
 public:
+    BaseTab* queueStack = nullptr;
+    BaseTab* tree = nullptr;
+
     static Window* getInstance();
 
     Window();

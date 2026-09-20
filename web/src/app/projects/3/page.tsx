@@ -19,7 +19,7 @@ export default function Page(){
     const [tab, setTab] = useState<structType>('queueStack');
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    // 1. 가로 스크롤 로직
+    //가로 스크롤 로직
     useEffect(() => {
         const container = scrollContainerRef.current;
         if (!container) return;
@@ -57,7 +57,6 @@ export default function Page(){
         }
 
     }, [tab, wasmInstance]);
-
 
     //WASM 모듈 로드 및 초기화
     useEffect(() => {

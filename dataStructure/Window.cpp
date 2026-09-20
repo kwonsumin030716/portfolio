@@ -10,6 +10,9 @@
 
 Window* Window::instance = nullptr;
 Window *Window::getInstance() {
+    if (instance == nullptr) {
+        instance = new Window();
+    }
     return instance;
 }
 
@@ -125,8 +128,9 @@ void Window::setCurrentTab(int index) {
 }
 
 extern "C" {
-    void changeTab(int tabIndex) {
-        setCurrentTab(tabIndex);
+    void changeTab(const int tabIndex) {
+        Window* window = Window::getInstance();
+        window->setCurrentTab(tabIndex);
         SDL_Log("C++ 내부 탭 변경 함수 실행 성공: %d", tabIndex);
     }
 }

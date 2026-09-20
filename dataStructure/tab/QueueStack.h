@@ -5,6 +5,12 @@
 
 class QueueStack : public BaseTab {
 private:
+    char** queue = nullptr;
+    char** stack = nullptr;
+    int capacity = 4;
+    int size = 0;
+
+    void resize();
 
 public:
     QueueStack();
@@ -18,6 +24,9 @@ public:
     void render() override;
 
     void handleEvent(const SDL_Event& e) override;
+
+    void push(char* text);
+    char* pop();
 
 };
 

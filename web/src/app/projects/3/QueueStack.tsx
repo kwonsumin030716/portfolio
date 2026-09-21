@@ -8,6 +8,8 @@ interface QueueStackProps {
 export default function QueueStack({wasm}: QueueStackProps) {
 
     const [inputText, setInputText] = useState<string>('');
+
+
     const handlePush = () => {
         if (!inputText.trim()) return;
 

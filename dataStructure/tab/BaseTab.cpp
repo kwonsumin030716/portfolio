@@ -48,9 +48,9 @@ void BaseTab::writeText(SDL_FRect* rect, const std::string& text, SDL_Color colo
 
     TTF_Font* font;
     if (s == TextStyle::BOLD) {
-        font = TTF_OpenFont("resources/fonts/Geist-Bold.ttf", static_cast<float>(size));
+        font = TTF_OpenFont("resources/fonts/PretendardGOV-Bold.ttf", static_cast<float>(size));
     }else {
-        font = TTF_OpenFont("resources/fonts/Geist-Regular.ttf", static_cast<float>(size));
+        font = TTF_OpenFont("resources/fonts/PretendardGOV-Regular.ttf", static_cast<float>(size));
     }
 
     if (!font) {

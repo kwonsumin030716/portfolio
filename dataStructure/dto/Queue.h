@@ -2,15 +2,18 @@
 
 #ifndef PORTFOLIO_QUEUE_H
 #define PORTFOLIO_QUEUE_H
+#include <string>
 #include <SDL3/SDL_render.h>
+#include <SDL3_ttf/SDL_ttf.h>
 
 
 class Queue {
 
 private:
     SDL_Renderer* renderer = nullptr;
-    char* storage = nullptr;
-    char* deleting = nullptr;
+    TTF_Font* font = nullptr;
+    std::string* storage = nullptr;
+    std::string deleting = "";
 
     int size = 0;
     int capacity = 6;
@@ -44,13 +47,14 @@ public:
     bool init(SDL_Renderer* r);
     void render();
 
-    void drawBox();
-    void drawNode();
+    void drawBox() const;
+    void drawNode() const;
+    void writeText(const std::string text, SDL_FRect nodePos) const;
 
-    bool isFull();
-    bool isEmpty();
+    bool isFull() const;
+    bool isEmpty() const;
 
-    void push(char* text);
+    void push(const std::string &text);
     void pop();
 };
 

@@ -37,7 +37,7 @@ Window::~Window() {
 }
 
 bool Window::init() {
-    window = SDL_CreateWindow(title.c_str(), width, height, SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow(title.c_str(), width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_RESIZABLE);
     if (!window) {
         SDL_Log("WASM Window 생성 실패: %s", SDL_GetError());
         return false;

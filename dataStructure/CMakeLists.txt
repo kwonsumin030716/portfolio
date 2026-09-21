@@ -15,12 +15,32 @@ set(SOURCE_FILES
 )
 
 if(EMSCRIPTEN)
+
+    # 기본 빌드 타입 Debug
+    if(NOT CMAKE_BUILD_TYPE)
+        set(CMAKE_BUILD_TYPE Debug)
+    endif()
+
+    #빌드 타입 별로 최적화 옵션 분기
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        message(STATUS "[WASM] 빌드 모드: Debug")
+        set(OPT_FLAG "-O1")
+    else()
+        message(STATUS "[WASM] 빌드 모드: Release")
+        set(OPT_FLAG "-O3")
+    endif()
+
     # 1. 컴파일 플래그
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -sUSE_SDL=3 -sUSE_SDL_TTF=3 -sDISABLE_EXCEPTION_CATCHING=0")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
+        ${OPT_FLAG} \
+        -sUSE_SDL=3 \
+        -sUSE_SDL_TTF=3 \
+        -sDISABLE_EXCEPTION_CATCHING=0 \
+        -Wno-experimental")
 
     # 2. 링크 플래그
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} \
-        -O3 \
+        ${OPT_FLAG} \
         -sUSE_SDL=3 \
         -sUSE_SDL_TTF=3 \
         -sSINGLE_FILE=1 \

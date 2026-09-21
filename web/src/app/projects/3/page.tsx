@@ -19,6 +19,29 @@ export default function Page(){
     const [tab, setTab] = useState<structType>('queueStack');
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
+
+    //canvas 크기 조정
+    useEffect(()=>{
+        if(!containerRef.current) return;
+
+        const resizeObserver = new ResizeObserver((entries) => {
+            for(const entry of entries){
+                const devicePixelRatio = window.devicePixelRatio || 1;
+                const width = entry.contentRect.width * devicePixelRatio;
+                const height = width * (1080 / 1920);
+
+                setDimensions({width: width, height: height});
+
+            }
+        });
+
+        resizeObserver.observe(containerRef.current);
+        return() => resizeObserver.disconnect();
+
+    }, [wasmInstance]);
+
     //가로 스크롤 로직
     useEffect(() => {
         const container = scrollContainerRef.current;
@@ -163,11 +186,16 @@ export default function Page(){
                 }
 
 
-                <div className="relative w-full h-150">
+                <div
+                    ref={containerRef}
+                    className="relative w-full"
+                >
                     <canvas
                         ref={canvasRef}
                         id="canvas"
-                        className="block w-full h-full bg-[#000000] object-contain"
+                        width={dimensions.width}
+                        height={dimensions.height}
+                        className="block w-full h-full bg-white"
                         onContextMenu={(e) => e.preventDefault()}
                     />
                 </div>

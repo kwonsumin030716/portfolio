@@ -49,7 +49,9 @@ void QueueStack::handleEvent(const SDL_Event& e) {
 }
 
 void QueueStack::push(char* text) const {
-    queue->push(text);
+    if (text != nullptr) {
+        queue->push(std::string(text));
+    }
 }
 
 void QueueStack::pop() const{

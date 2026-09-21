@@ -163,15 +163,15 @@ export default function Page(){
                 }
 
 
-                <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+                <div className="relative w-full h-150">
                     <canvas
                         ref={canvasRef}
                         id="canvas"
-                        style={{ width: '100%', height: '100%', backgroundColor: '#000000', display: 'block' }}
-                        className=""
+                        className="block w-full h-full bg-[#000000] object-contain"
                         onContextMenu={(e) => e.preventDefault()}
                     />
                 </div>
+
             </>
         </BasePage>
     )

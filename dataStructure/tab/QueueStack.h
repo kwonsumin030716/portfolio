@@ -2,16 +2,12 @@
 #define QUEUE_STACK_H
 
 #include "BaseTab.h"
+#include "../dto/Queue.h"
 
 class QueueStack : public BaseTab {
 private:
-    char** queue = nullptr;
+    Queue* queue = nullptr;
     char** stack = nullptr;
-    int capacity = 4;
-    int size = 0;
-
-    void resize();
-
 public:
     QueueStack();
     ~QueueStack() override;
@@ -25,8 +21,8 @@ public:
 
     void handleEvent(const SDL_Event& e) override;
 
-    void push(char* text);
-    char* pop();
+    void push(char* text) const;
+    void pop() const;
 
 };
 

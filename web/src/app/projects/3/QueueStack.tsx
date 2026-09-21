@@ -17,6 +17,12 @@ export default function QueueStack({wasm}: QueueStackProps) {
         }
     };
 
+    const handlePop = () => {
+        if(wasm && typeof wasm.ccall === "function"){
+            wasm.ccall("queueStackPop", null, [], []);
+        }
+    }
+
     return (
         <div
             className="flex h-12 gap-2"
@@ -38,6 +44,7 @@ export default function QueueStack({wasm}: QueueStackProps) {
             </button>
             <button
                 className="bg-[#1F41B0] text-white text-lg p-3 rounded-lg font-bold"
+                onClick={handlePop}
             >
                 POP
             </button>

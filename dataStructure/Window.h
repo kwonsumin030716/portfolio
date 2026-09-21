@@ -20,8 +20,8 @@ private:
     BaseTab* currentTab = nullptr;
 
     std::string title;
-    int width = 800;
-    int height = 400;
+    int width = 1920;
+    int height = 1080;
 
 public:
     BaseTab* queueStack = nullptr;

@@ -11,6 +11,7 @@ set(SOURCE_FILES
         tab/BaseTab.cpp
         tab/QueueStack.cpp
         tab/Tree.cpp
+        dto/Queue.cpp
 )
 
 if(EMSCRIPTEN)
@@ -26,7 +27,7 @@ if(EMSCRIPTEN)
         -sEXIT_RUNTIME=0 \
         -sDISABLE_EXCEPTION_CATCHING=0 \
         -sALLOW_MEMORY_GROWTH=1 \
-        -sEXPORTED_FUNCTIONS=['_main','_changeTab'] \
+        -sEXPORTED_FUNCTIONS=['_main','_changeTab','_queueStackPush','_queueStackPop'] \
         -sEXPORTED_RUNTIME_METHODS=['ccall','cwrap'] \
         -sEXPORT_ES6=1 \
         -sMODULARIZE=1 \
